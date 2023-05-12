@@ -13,9 +13,7 @@ export default function Register(){
         
         
        <div className='App'> 
-       <br />
-        <br />
-        <h1 className='titre'> Se Connecter</h1>
+        
 
            <Row className='landing'>
 

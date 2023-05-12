@@ -6,6 +6,7 @@ import { useState } from 'react'
 import 'react-phone-number-input/style.css'
 import Left from './Left'
 import DroitRegister from './DroitRegister'
+import LeftRegister from './LeftRegister'
 
 export default function Register(){
 
@@ -21,7 +22,7 @@ export default function Register(){
                <Row>
                      <Col>
                         
-                        <Left/>
+                        <LeftRegister/>
 
                     </Col>
                     <Col>

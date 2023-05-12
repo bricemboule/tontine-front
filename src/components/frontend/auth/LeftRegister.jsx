@@ -6,7 +6,7 @@ export default function Left(){
 
         <div>
          
-            <Image src="/Images/login.jpg" width={600} height={500}/>
+            <Image src="/Images/login_register.jpg" width={600} height={500}/>
         </div>
     )
 }
