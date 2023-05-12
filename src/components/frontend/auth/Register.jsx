@@ -17,8 +17,7 @@ export default function Register(){
         
         <div>
             <br />
-                <h1 className='titre'>CREER VOTRE COMPTE</h1>
-                <br />
+                
                <Row>
                      <Col>
                         

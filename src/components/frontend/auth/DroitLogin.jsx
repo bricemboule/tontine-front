@@ -7,6 +7,8 @@ export default function DroitLogin(){
 
         <div>
             <br />
+            <br />
+            <br />
            
             <Form style={{width : "80%", marginLeft : "10%", marginTop : "10%"}}>
 
@@ -25,7 +27,7 @@ export default function DroitLogin(){
                 <br />
                 <br />
 
-                <Button type="submit" class="btn btn-primary btn-block">Se Connecter</Button>
+                <Button type="submit" className='btn btn-lg btn-block col-12'>Se Connecter</Button>
 
             </Form>
         </div>
