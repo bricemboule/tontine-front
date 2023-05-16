@@ -1,15 +1,19 @@
-import React from 'react';
-import Login from './components/frontend/auth/Login';
-import Register from './components/frontend/auth/Register';
-import {Button, Alert, Row, Col} from 'react-bootstrap';
+import SideBar from "./components/frontend/SideBar";
+import Header from "./components/frontend/Header";
+import Content from "./components/frontend/Content";
+import Footer from "./components/frontend/Footer";
 
 
-function App() {
+
+export default function App() {
   return (
     <div>
-        <Register/>
+        <Header/>
+        <SideBar/>
+        <Content/>
+        <Footer/>
+        
+
     </div>
   );
 }
-
-export default App;

@@ -13,7 +13,7 @@ export default function DroitLogin(){
             <Form style={{width : "80%", marginLeft : "10%", marginTop : "10%"}}>
 
                 <Form.Group>
-                    <Form.Label style={{fontWeight : "bolder",fontSize:"15px"}}> Votre Username : </Form.Label>
+                    <Form.Label style={{fontWeight : "bolder",fontSize:"15px"}}> Votre login : </Form.Label>
                     <Form.Control type="text" placeholder="votre username ou login . . . " size="lg"/>
                 </Form.Group>
 

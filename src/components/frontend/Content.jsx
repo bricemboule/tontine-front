@@ -1,39 +1,103 @@
+import "admin-lte/plugins/jquery/jquery"
+import "admin-lte/plugins/bootstrap/js/bootstrap.bundle"
+import "admin-lte/dist/js/adminlte"
+import "./css/home.css"
 export default function Content(){
 
     return(
 
-        <div className="content-wrapper">
-                <section className="content-header">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="box">
-                                <div className="box-header with-border">
-                                    <h3 className="box-title">Monthly Recap Report</h3>
-                                </div>
-                                <div className="box-body">
-                                    <div className="row">
-                                        <div className="col-md-8">
-                                            <p className="text-center">
-                                                <strong>This is text</strong>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="box-footer">
-                                    <div className="row">
-                                        <div className="col-sm-3 col-xs-6">
-                                            <div className="description-block border-right">
-                                                <span className="description-percentage text-green"><i className="fa fa-caret-up"></i> 17%</span>
-                                                <h5 className="description-header">$35,210.43</h5>
-                                                <span className="description-text">TOTAL REVENUE</span>
-                                            </div>
-                                        </div>    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        <div >
+             
+             <div className="content-wrapper">
+
+
+<div className="content-header">
+<div className="container-fluid">
+<div className="row mb-2">
+<div className="col-sm-6">
+<h1 className="m-0">Page d accueil</h1>
+</div>
+<div className="col-sm-6">
+<ol className="breadcrumb float-sm-right">
+<li className="breadcrumb-item"><a href="#">Home</a></li>
+<li className="breadcrumb-item active">Page d accueil</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+
+<div className="content">
+<div className="container-fluid">
+<div className="row">
+<div className="col-lg-6">
+<div className="card">
+<div className="card-body">
+<h5 className="card-title">Card title</h5>
+<p className="card-text">
+Some quick example text to build on the card title and make up the bulk of the card
+content.
+</p>
+<a href="#" className="card-link">Card link</a>
+<a href="#" className="card-link">Another link</a>
+</div>
+</div>
+<div className="card card-primary card-outline">
+<div className="card-body">
+<h5 className="card-title">Card title</h5>
+<p className="card-text">
+Some quick example text to build on the card title and make up the bulk of the card
+content.
+</p>
+<a href="#" className="card-link">Card link</a>
+<a href="#" className="card-link">Another link</a>
+</div>
+</div>
+</div>
+
+<div className="col-lg-6">
+<div className="card">
+<div className="card-header">
+<h5 className="m-0">Featured</h5>
+</div>
+<div className="card-body">
+<h6 className="card-title">Special title treatment</h6>
+<p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+<a href="#" className="btn btn-primary">Go somewhere</a>
+</div>
+</div>
+<div className="card card-primary card-outline">
+<div className="card-header">
+<h5 className="m-0">Featured</h5>
+</div>
+<div className="card-body">
+<h6 className="card-title">Special title treatment</h6>
+<p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+<a href="#" className="btn btn-primary">Go somewhere</a>
+</div>
+</div>
+</div>
+ 
+</div>
+
+</div>
+</div>
+
+        
+        
             </div>
+
+            <aside className="control-sidebar control-sidebar-dark">
+
+                <div className="p-3">
+                    <h5>Title</h5>
+                    <p>Sidebar content</p>
+                </div>
+            </aside>
+
+        </div>
+
+
     )
 }
