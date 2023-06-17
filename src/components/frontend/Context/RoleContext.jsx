@@ -12,6 +12,8 @@ export const RoleProvider = ({children})=>{
     const [userInput, setUserInput] = useState([]);
     const [users, setUsers] = useState([]);
     const [user,setUser] = useState([]);
+    const [value1, setValue1] = useState();
+    const [ value, setValue] = useState();
     const navigate = useNavigate();
 
     const [roleValues, setRoleValues] = useState({
@@ -28,6 +30,8 @@ export const RoleProvider = ({children})=>{
     const handleInput = (e) =>{
 
         e.persist();
+        console.log(e.target.value);
+       
         setUserInput({...userInput, [e.target.name] : e.target.value})
     }
 
@@ -54,12 +58,14 @@ export const RoleProvider = ({children})=>{
     const getUsers = async()=>{
 
         const apiUSers = await axios.get('users');
+        console.log(apiUSers);
         setUsers(apiUSers.data.data);
     }
 
     const getUser = async (id) =>{
         const response = await axios.get('users/' +id);
         const apiUser = response.data.data;
+       
         setUser(apiUser);
         setUserInput({
             nom: apiUser.nom,
@@ -116,7 +122,7 @@ export const RoleProvider = ({children})=>{
 
         await axios.delete("users/" + id);
         getUsers();
-        navigate("admin/users/lister");
+        navigate("admin/utilisateur/lister");
     }
 
     const SaveRole = async (e) =>{
@@ -138,12 +144,15 @@ export const RoleProvider = ({children})=>{
     const SaveUser = async (e)=>{
         e.preventDefault();
         try {
-            console.log(userInput);
+            console.log("bonsoir");
+            userInput.telephone1 = value;
+            userInput.telephone2 = value1;
             await axios.post("users", userInput);
             console.log(userInput);
+            console.log("bonne nuit");
             getUsers();
             
-            navigate("/admin/users/lister");
+            navigate("/admin/utilisateur/lister");
             
         } catch (e) {
             if(e.response.status === 422){
@@ -153,7 +162,7 @@ export const RoleProvider = ({children})=>{
     }
 
         return (<RoleContext.Provider value={{
-            role, roles,errors,userInput,users, getRole, getRoles, handleChange1,handleInput, handleChange2, 
+            role, roles,errors,userInput,users,value,value1, setValue, setValue1, getRole, getRoles, handleChange1,handleInput, handleChange2, 
             roleValues,SupprimerUser, SaveRole, modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
             {children} 
         </RoleContext.Provider>);

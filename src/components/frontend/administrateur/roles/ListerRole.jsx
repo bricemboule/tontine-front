@@ -71,7 +71,7 @@ export default function ListerRole(){
                                         <td>{role.modifié}</td>
                                             
                                         <td className="text-center">
-                                            <button className="btn btn-link" > <Link to={'admin/roles/afficher'}><i className="far fa-eye text-yellow"></i></Link> </button>
+                                            <button className="btn btn-link" > <Link to={`/admin/roles/${role.id}/afficher`}><i className="far fa-eye text-yellow"></i></Link> </button>
                                             <button className="btn btn-link" ><Link to={`/admin/roles/${role.id}/modifier`}> <i className="far fa-edit text-green"></i></Link> </button>
                                             <button className="btn btn-link " onClick={()=>SupprimerRole(role.id)}> <i className="far fa-trash-alt text-red"></i></button>
                                         </td>

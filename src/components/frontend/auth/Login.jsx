@@ -40,7 +40,7 @@ export default function Register(){
                 if (res.data.status === 200){
                     localStorage.setItem('auth_token', res.data.token);
                     localStorage.setItem('auth_name', res.data.login);
-                    //Swal.fire("Connexion réussie", res.data.message, "success");
+                    Swal.fire("Connexion réussie", res.data.message, "success");
                     console.log(res.data.role[0].pivot.dateDebut);
                     console.log(res.data.role[0].pivot.dateFinPrevue);
                     console.log(res.data.role[0].pivot.dateFinEffective);
@@ -68,7 +68,7 @@ export default function Register(){
                             navigate("/censeur");
                             break;
                         default :
-                            navigate("/");
+                            navigate("/pageNotFoud");
                     }
                 }else if (res.data.status === 401) {
                     Swal.fire("Warning", res.data.message, "warning");

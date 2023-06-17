@@ -18,9 +18,8 @@ export default function ContentAjouter(){
 
     
 
-    const {roles, getRoles, userInput, SaveUser, handleInput} = useContext(RoleContext); 
-    const [value1, setValue1] = useState();
-    const [ value, setValue] = useState();
+    const {roles, getRoles, value, value1, setValue, setValue1, SaveUser, handleInput} = useContext(RoleContext); 
+    
     
   
 
@@ -28,11 +27,7 @@ export default function ContentAjouter(){
         getRoles();
     }, [])
 
-    const Save =()=>{
-
-        console.log("Bon après-midi");
-    }
-
+  
 
     return(
         <div>
@@ -57,12 +52,12 @@ export default function ContentAjouter(){
                                 <Row className="mb-3">
                                     <Form.Group as={Col} controlId="formGridNaissance">
                                         <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date de naissance  </Form.Label>
-                                        <Form.Control type="date"  name='date_naissance'  onChange={handleInput}/>
+                                        <Form.Control type="date"  name='anneeNais'  onChange={handleInput}/>
                                     </Form.Group>
 
                                     <Form.Group as={Col} controlId="formGridEntre">
                                         <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date d'entrée </Form.Label>
-                                        <Form.Control type="date"  name='date_entree' onChange={handleInput}/>
+                                        <Form.Control type="date"  name='anneeEntree' onChange={handleInput}/>
                                     </Form.Group>
                                 </Row>
 
@@ -115,17 +110,17 @@ export default function ContentAjouter(){
                                 <Row className="mb-3">
                                     <Form.Group as={Col} controlId="formGridDateDebut">
                                         <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date début  <span className='etoile'>*</span> </Form.Label>
-                                        <Form.Control type="date"  name='date_debut' onChange={handleInput}/>
+                                        <Form.Control type="date"  name='dateDebut' onChange={handleInput}/>
                                     </Form.Group>
 
                                     <Form.Group as={Col} controlId="formGridDateFinPrevu">
                                         <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date fin prévue <span className='etoile'>*</span> </Form.Label>
-                                        <Form.Control type="date"  name='date_fin_prevu' onChange={handleInput}/>
+                                        <Form.Control type="date"  name='dateFinPrevu' onChange={handleInput}/>
                                     </Form.Group>
 
                                     <Form.Group as={Col} controlId="formGridDateFinEffectuve">
                                         <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date fin effective   </Form.Label>
-                                        <Form.Control type="date"  name='date_fin_effective' onChange={handleInput}/>
+                                        <Form.Control type="date"  name='dateFinEffective' onChange={handleInput}/>
                                     </Form.Group>
                                 </Row>
 

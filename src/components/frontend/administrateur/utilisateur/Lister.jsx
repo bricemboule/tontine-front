@@ -31,7 +31,7 @@ export default function Lister(){
                             <h3 className="card-title flex-grow-1 text-white pb-3"><i className="fas fa-users fa-2x"></i> Liste des Membres</h3>
 
                             <div className="card-tools d-flex align-items-center ">
-                                <Link to={'/admin/users/ajouter'} className="btn  text-white mr-4 d-block" ><i className="fas fa-user-plus"></i> Nouveau Membre</Link>
+                                <Link to={'/admin/utilisateur/ajouter'} className="btn  text-white mr-4 d-block" ><i className="fas fa-user-plus"></i> Nouveau Membre</Link>
                                 <div className="input-group input-group-md" style={{width: "250px"}}>
                                     <input type="text" name="table_search" className="form-control float-right" placeholder="Search"/>
 
@@ -63,12 +63,12 @@ export default function Lister(){
                                             <tr key={user.id}>
                                                 <td> </td>
                                                 <td>{user.nom} {user.prenom}</td>
-                                                <td></td>
+                                                <td>{user.role[0].nom}</td>
                                                 <td>{user.anneeEntree}</td>
                                                 <td>{user.telephone1}</td>
                                                 <td className="text-center">{user.email}</td>
                                                 <td className="text-center">
-                                                    <button className="btn btn-link" > <Link to={`/admin/users/${user.id}`}><i className="far fa-eye text-yellow"></i></Link> </button>
+                                                    <button className="btn btn-link" > <Link to={`/admin/users/${user.id}/afficher`}><i className="far fa-eye text-yellow"></i></Link> </button>
                                                     <button className="btn btn-link" ><Link to={`/admin/users/${user.id}/modifier`}> <i className="far fa-edit text-green"></i></Link> </button>
                                                     <button className="btn btn-link " onClick={()=>SupprimerUser(user.id)}> <i className="far fa-trash-alt text-red"></i></button>
                                                 </td>

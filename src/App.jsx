@@ -19,11 +19,13 @@ export default function App() {
                     <Route path='/admin/utilisateur'>
                       <Route path='/admin/utilisateur/ajouter' element={<Ajouter/>}/>
                       <Route path='/admin/utilisateur/lister' element={<Lister/>}/>
+                      <Route path='/admin/utilisateur/afficher' element={<ListerRole/>}/>
                     </Route>
 
                     <Route path='/admin/roles'>
                       <Route path='/admin/roles/ajouter' element={<AjouterRole/>}/>
                       <Route path='/admin/roles/lister' element={<ListerRole/>}/>
+                     
                     </Route>
 
                 </Route>
