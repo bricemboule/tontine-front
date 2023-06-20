@@ -125,6 +125,11 @@ export const RoleProvider = ({children})=>{
         navigate("admin/utilisateur/lister");
     }
 
+    const Deconnecter = async ()=>{
+        
+        navigate("/");
+    }
+
     const SaveRole = async (e) =>{
         e.preventDefault();
 
@@ -161,9 +166,11 @@ export const RoleProvider = ({children})=>{
         }
     }
 
+
+
         return (<RoleContext.Provider value={{
             role, roles,errors,userInput,users,value,value1, setValue, setValue1, getRole, getRoles, handleChange1,handleInput, handleChange2, 
-            roleValues,SupprimerUser, SaveRole, modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
+            roleValues,SupprimerUser, SaveRole, Deconnecter,modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
             {children} 
         </RoleContext.Provider>);
 };

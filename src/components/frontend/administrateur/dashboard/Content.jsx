@@ -3,9 +3,16 @@ import "admin-lte/plugins/bootstrap/js/bootstrap.bundle"
 import "admin-lte/dist/js/adminlte"
 
 import { Link} from "react-router-dom"
+import { Button } from "bootstrap"
+import { useContext } from "react"
+import RoleContext from "../../Context/RoleContext"
 
 
 export default function Content(){
+
+    const {Deconnecter} = useContext(RoleContext);
+
+
 
     return(
 
@@ -120,7 +127,7 @@ export default function Content(){
                           
                        </ul>
                       
-                       <Link to={''} className="btn btn-primary btn-block"><b>Se Déconnecter</b></Link>
+                       <button onClick={()=>Deconnecter()} className="btn btn-primary btn-block"><b>Se Déconnecter</b></button>
 
                    </div>
            </div>

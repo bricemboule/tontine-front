@@ -1,7 +1,8 @@
-import Content from "../../tresorier/dashboard/Content"
+import Content from "./Content"
 import Header from "./Header"
 import SideBar from "./SideBar"
 import Footer from "./Footer"
+import { Outlet } from "react-router-dom"
 
 export default function DashboardVicePresident(){
 
@@ -10,8 +11,8 @@ export default function DashboardVicePresident(){
         <div>
             <Header/>
             <SideBar/>
-            <Content/>
-            
+            <Outlet/> 
+           <Content/> 
             <Footer/>
         </div>
     )

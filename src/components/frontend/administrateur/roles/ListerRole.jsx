@@ -32,7 +32,7 @@ export default function ListerRole(){
                             <h3 className="card-title flex-grow-1 text-white pb-3"><i className="fas fa-users fa-2x"></i> Liste des roles</h3>
 
                             <div className="card-tools d-flex align-items-center ">
-                                <Link to={'/admin/roles/ajouter'} className="btn  text-white mr-4 d-block" ><i className="fas fa-user-plus"></i> Nouveau Roles</Link>
+                                <Link to={'/admin/roles/ajouter'} className="btn  text-white mr-4 d-block" ><i className="fas fa-user-plus"></i> Nouveau Role</Link>
                                 <div className="input-group input-group-md" style={{width: "250px"}}>
                                     <input type="text" name="table_search" className="form-control float-right" placeholder="Search"/>
 
