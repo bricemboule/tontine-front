@@ -1,24 +1,25 @@
 import {useContext} from 'react'
-import Swal from 'sweetalert2';
+
 import RoleContext from '../../Context/RoleContext';
 
 
 
 export default function AjouterRole(){
     
-    const {roleValues, errors, handleChange1, SaveRole} = useContext(RoleContext);
+    const {roleValues, handleChange1, SaveRole} = useContext(RoleContext);
     console.log(roleValues);
 
 
     return (
+
         <div className="content-wrapper">
         <div className="content">
             <div className="container-fluid">
                 <br />
-                <h1>Roles et Permissions</h1>
+                <h1>Roles</h1>
                 <br/>
                 <div className="row">
-                    <div className = "col-md-6">
+                    <div className = "col">
                         <div className="card card-primary">
                             <div className="card-header">
                                 <h3 className="card-title">Roles</h3>
@@ -45,31 +46,7 @@ export default function AjouterRole(){
                             </form>
                         </div>
                     </div>
-                    <div className = "col-md-6">
-                        <div className="card card-success">
-                            <div className="card-header">
-                                <h3 className="card-title">Permissions</h3>
-                            </div>
-
-                            <form >
-                                <div className="card-body">
-                                    <div className="form-group">
-                                        <label >Nom</label>
-                                        <input name='libelle'  type="text" className="form-control"  placeholder="Veuillez entrer une permission"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label >Description</label>
-                                        <input name='description' type="text" className="form-control" placeholder="la description ici..."/>
-                                    </div>
-                                
-                                </div>
-
-                                <div className="card-footer">
-                                    <button type="submit" className="btn btn-primary col-10 ml-4">Créer</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>

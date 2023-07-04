@@ -2,27 +2,20 @@ import "admin-lte/plugins/jquery/jquery"
 import "admin-lte/plugins/bootstrap/js/bootstrap.bundle"
 import "admin-lte/dist/js/adminlte"
 import "/public/css/home.css"
-import {Form,Row,InputGroup,Col,Button,Image} from 'react-bootstrap'
+import {Form,Row,Col,Button} from 'react-bootstrap'
 import 'react-phone-input-2/lib/style.css'
 import 'react-phone-number-input/style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-phone-number-input/style.css'
 import 'react-phone-input-2'
 import PhoneInput from 'react-phone-input-2'
-import {useState, useEffect} from 'react'
-import { Link } from "react-router-dom"
 import RoleContext from "../../Context/RoleContext"
-import { useContext } from "react"
+import { useContext,useEffect } from "react"
 
 export default function ContentAjouter(){
 
+    const {roles, getRoles,userInput, value, value1, setValue, setValue1, SaveUser, handleInput} = useContext(RoleContext); 
     
-
-    const {roles, getRoles, value, value1, setValue, setValue1, SaveUser, handleInput} = useContext(RoleContext); 
-    
-    
-  
-
     useEffect(()=>{
         getRoles();
     }, [])
@@ -56,30 +49,43 @@ export default function ContentAjouter(){
                                     </Form.Group>
 
                                     <Form.Group as={Col} controlId="formGridEntre">
-                                        <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date d'entrée </Form.Label>
+                                        <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date entrée </Form.Label>
                                         <Form.Control type="date"  name='anneeEntree' onChange={handleInput}/>
                                     </Form.Group>
                                 </Row>
 
                                 <Row className="mb-3">
-                                    <Form.Group as={Col} controlId="formGridNomEpoux">
-                                        <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Nom de l'Epoux/Epouse <span className='etoile'>*</span>  </Form.Label>
-                                        <Form.Control type="text" placeholder="Nom époux ou épouse"  name='nomEpoux' onChange={handleInput}/>
-                                    </Form.Group>
-
-                                    <Form.Group as={Col} controlId="formGridNbFemme">
-                                    <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Nombre de Femme <span className='etoile'>*</span>  </Form.Label>
-                                    <Form.Control type="number" placeholder="Nombre de femme" defaultValue={0} name='nbDeFemme' onChange={handleInput}/>
-                                    </Form.Group>
 
                                     <Form.Group as={Col} controlId="formGridSexe">
-                                    <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Votre sexe <span className='etoile'>*</span>   </Form.Label>
-                                    <Form.Select aria-label="Default select example"  name='sexe' onChange={handleInput}>
-                                            <option value=""></option>
-                                            <option value="H">Homme</option>
-                                            <option value="F">Femme</option>
-                                    </Form.Select>
+                                        <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Votre sexe <span className='etoile'>*</span>   </Form.Label>
+                                        <Form.Select aria-label="Default select example"  name='sexe' onChange={handleInput}>
+                                                <option value=""></option>
+                                                <option value="H">Homme</option>
+                                                <option value="F">Femme</option>
+                                        </Form.Select>
                                     </Form.Group>
+
+                                    {
+                                        (userInput.sexe === 'H') ?   (
+                                                <>
+                                                    <Form.Group as={Col} controlId="formGridNomEpoux">
+                                                        <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Nom de votre épouse <span className='etoile'>*</span>  </Form.Label>
+                                                        <Form.Control type="text" placeholder="Nom époux ou épouse"  name='nomEpouse' onChange={handleInput}/>
+                                                    </Form.Group>
+
+                                                    <Form.Group as={Col} controlId="formGridNbFemme">
+                                                        <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Nombre de Femme <span className='etoile'>*</span>  </Form.Label>
+                                                        <Form.Control type="number" placeholder="Nombre de femme" defaultValue={0} name='nbDeFemme' onChange={handleInput}/>
+                                                    </Form.Group>
+                                                </>
+                                            ) :  (
+                                                <Form.Group as={Col} controlId="formGridNomEpoux" >
+                                                    <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}} >Nom de votre Epoux<span className='etoile'>*</span>  </Form.Label>
+                                                    <Form.Control type="text" placeholder="Nom époux ou épouse"  name='nomEpoux' onChange={handleInput} />
+                                                </Form.Group>
+                                            )
+
+                                    }
                                 
                                 </Row>
 
@@ -97,6 +103,7 @@ export default function ContentAjouter(){
                                     <Form.Group as={Col} controlId="formGridResposabilite">
                                     <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Responsabilité <span className='etoile'>*</span>   </Form.Label>
                                     <Form.Select aria-label="Default select example"  name='role' onChange={handleInput}>
+                                            <option value=""></option>
                                             {roles.map((role)=>{
 
                                                 return (

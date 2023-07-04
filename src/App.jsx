@@ -14,7 +14,9 @@ import DashboardTresorier from './components/frontend/tresorier/dashboard/Dashbo
 import DashboardCommissaire from './components/frontend/commissaire/dashboard copy/DashboardCommissaire';
 import DashboardVicePresident from './components/frontend/vice_president/dashboard copy/DashboardVicePresident';
 import DashboardPresident from './components/frontend/president/dashboard copy/DashboardPresident';
-
+import Modifier from './components/frontend/administrateur/utilisateur/Modifier';
+import ModifierRole from './components/frontend/administrateur/roles/ModifierRole';
+import SupprimerRole from './components/frontend/administrateur/roles/SupprimerRole';
 
 
 export default function App() {
@@ -28,12 +30,15 @@ export default function App() {
                     <Route path='/admin/utilisateur'>
                       <Route path='/admin/utilisateur/ajouter' element={<Ajouter/>}/>
                       <Route path='/admin/utilisateur/lister' element={<Lister/>}/>
-                      <Route path='/admin/utilisateur/afficher' element={<ListerRole/>}/>
+                      <Route path='/admin/utilisateur/modifier' element={<Modifier/>}/>
+                      <Route path='/admin/utilisateur/supprimer' element={<Modifier/>}/>
                     </Route>
 
                     <Route path='/admin/roles'>
                       <Route path='/admin/roles/ajouter' element={<AjouterRole/>}/>
                       <Route path='/admin/roles/lister' element={<ListerRole/>}/>
+                      <Route path='/admin/roles/modifier' element={<ModifierRole/>}/>
+                      <Route path='/admin/roles/supprimer' element={<SupprimerRole/>}/>
                      
                     </Route>
 

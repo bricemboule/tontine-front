@@ -1,7 +1,9 @@
 import {createContext, useState} from 'react'
 import axios  from 'axios'
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 axios.defaults.baseURL = "http://localhost:8000/api/"
+
 
 const RoleContext = createContext();
 export const RoleProvider = ({children})=>{
@@ -11,7 +13,7 @@ export const RoleProvider = ({children})=>{
     const [errors, setErrors] = useState([]);
     const [userInput, setUserInput] = useState([]);
     const [users, setUsers] = useState([]);
-    const [user,setUser] = useState([]);
+    //const [user,setUser] = useState([]);
     const [value1, setValue1] = useState();
     const [ value, setValue] = useState();
     const navigate = useNavigate();
@@ -30,7 +32,7 @@ export const RoleProvider = ({children})=>{
     const handleInput = (e) =>{
 
         e.persist();
-        console.log(e.target.value);
+        console.log(e.target.name, e.target.value);
        
         setUserInput({...userInput, [e.target.name] : e.target.value})
     }
@@ -126,7 +128,9 @@ export const RoleProvider = ({children})=>{
     }
 
     const Deconnecter = async ()=>{
-        
+
+        const response = await axios.post("logout");
+        Swal.fire("Déconnexion réussie", response.data.message, "success");
         navigate("/");
     }
 

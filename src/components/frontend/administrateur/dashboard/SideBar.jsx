@@ -4,8 +4,7 @@ import "admin-lte/dist/js/adminlte"
 import "/public/css/home.css"
 
 import {Image} from 'react-bootstrap'
-import { Link, Outlet } from "react-router-dom"
-import { RoleProvider } from "../../Context/RoleContext"
+import { Link} from "react-router-dom"
 
 export default function sidebar(){
 
@@ -86,7 +85,7 @@ export default function sidebar(){
                                     <a href="#" className="nav-link active">
                                         <i className="nav-icon fas fa-user-plus"></i>
                                         <p>
-                                            Roles et Permissions
+                                            Roles
                                             <i className="right fas fa-angle-left"></i>
                                         </p>
                                     </a>

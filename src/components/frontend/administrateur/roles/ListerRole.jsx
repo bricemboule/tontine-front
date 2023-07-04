@@ -2,7 +2,7 @@ import "admin-lte/plugins/jquery/jquery"
 import "admin-lte/plugins/bootstrap/js/bootstrap.bundle"
 import "admin-lte/dist/js/adminlte"
 import "/public/css/home.css"
-import DataTable from "react-data-table-component"
+
 import {useEffect, useContext} from "react"
 import { Link } from "react-router-dom"
 import RoleContext from "../../Context/RoleContext"
@@ -50,8 +50,8 @@ export default function ListerRole(){
                                     <th style={{width:"5%"}}></th>
                                     <th style={{width:"15%"}}>Poste</th>
                                     <th style={{width:"25%" }}>Description</th>
-                                    <th style={{width:"15%" }}>Création</th>
-                                    <th style={{width:"15%" }}>Modification</th>
+                                    <th style={{width:"15%" }}>Créé le</th>
+                                    <th style={{width:"15%" }}>Modifié le</th>
                                     
                                     <th style={{width:"25%"}} className="text-center">Action</th>
                                     </tr>
