@@ -17,6 +17,8 @@
     "bootstrap": "5.2",
     "flowbite": "^1.6.5",
     "flowbite-react": "^0.4.7",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.29",
     "primeicons": "^6.0.1",
     "primereact": "^9.6.0",
     "react": "^18.2.0",
@@ -26,7 +28,7 @@
     "react-phone-input-2": "^2.15.1",
     "react-phone-number-input": "^3.2.21",
     "react-router-dom": "^6.11.1",
-    "sweetalert2": "^11.7.5",
+    "sweetalert2": "^11.4.8",
     "sweetalert2-react-content": "^5.0.7"
   },
   "devDependencies": {
@@ -35,7 +37,7 @@
     "@vitejs/plugin-react-swc": "^3.0.0",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.38.0",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react": "^7.25.3",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
     "postcss": "^8.4.24",

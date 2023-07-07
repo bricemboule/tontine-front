@@ -13,7 +13,7 @@ export const RoleProvider = ({children})=>{
     const [errors, setErrors] = useState([]);
     const [userInput, setUserInput] = useState([]);
     const [users, setUsers] = useState([]);
-    //const [user,setUser] = useState([]);
+    const [user,setUser] = useState([]);
     const [value1, setValue1] = useState();
     const [ value, setValue] = useState();
     const navigate = useNavigate();
@@ -174,7 +174,7 @@ export const RoleProvider = ({children})=>{
 
         return (<RoleContext.Provider value={{
             role, roles,errors,userInput,users,value,value1, setValue, setValue1, getRole, getRoles, handleChange1,handleInput, handleChange2, 
-            roleValues,SupprimerUser, SaveRole, Deconnecter,modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
+            roleValues,SupprimerUser,setRoles, SaveRole, Deconnecter,modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
             {children} 
         </RoleContext.Provider>);
 };
