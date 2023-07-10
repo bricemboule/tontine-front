@@ -14,7 +14,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "admin-lte": "^3.2.0",
     "axios": "^1.4.0",
-    "bootstrap": "5.2",
+  
     "flowbite": "^1.6.5",
     "flowbite-react": "^0.4.7",
     "jspdf": "^2.5.1",
@@ -22,8 +22,8 @@
     "primeicons": "^6.0.1",
     "primereact": "^9.6.0",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.7.4",
-    "react-data-table-component": "^7.5.3",
+  
+ 
     "react-dom": "^18.2.0",
     "react-phone-input-2": "^2.15.1",
     "react-phone-number-input": "^3.2.21",

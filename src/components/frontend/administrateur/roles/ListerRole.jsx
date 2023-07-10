@@ -1,9 +1,5 @@
-import "admin-lte/plugins/jquery/jquery"
-import "admin-lte/plugins/bootstrap/js/bootstrap.bundle"
-import "admin-lte/dist/js/adminlte"
-import "/public/css/home.css"
-import {useEffect, useContext} from "react"
-import RoleContext from "../../Context/RoleContext"
+import {useEffect, useContext} from "react";
+import RoleContext from "../../Context/RoleContext";
 import React, { useState, useRef } from 'react';
 import { classNames } from 'primereact/utils';
 import { DataTable } from 'primereact/datatable';
@@ -14,10 +10,12 @@ import { Toolbar } from 'primereact/toolbar';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
 export default function ListerRole(){
-    const {roles, getRoles,setRoles, SupprimerRole} = useContext(RoleContext);
+    const {roles, getRoles,setRoles} = useContext(RoleContext);
 
     let emptyRole = {
         id: null,
@@ -174,7 +172,7 @@ export default function ListerRole(){
 
     const leftToolbarTemplate = () => {
         return (
-            <div className="flex flex-wrap gap-2 space-between">
+            <div className="d-flex flex-wrap gap-2">
                 <Button label="Nouveau role" icon="pi pi-plus" severity="success" onClick={openNew} />
                 <Button label="Supprimer role" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedRoles || !selectedRoles.length} />
             </div>
@@ -197,7 +195,7 @@ export default function ListerRole(){
     };
 
     const header = (
-        <div className="flex flex-wrap gap-2 align-items-center justify-content-between">
+        <div className="d-flex flex-wrap gap-2 align-items-center justify-content-between">
             <h4 className="m-0">Gestion des roles</h4>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
@@ -211,6 +209,8 @@ export default function ListerRole(){
             <Button label="Enregistrer" icon="pi pi-check" onClick={saveRole} />
         </React.Fragment>
     );
+
+
     const deleteRoleDialogFooter = (
         <React.Fragment>
             <Button label="Non" icon="pi pi-times" outlined onClick={hideDeleteRoleDialog} />
@@ -238,28 +238,25 @@ export default function ListerRole(){
         <div className="content-wrapper">
             <div className="content">
                 <div className="container-fluid">
-                <br />
-                <br />
+                
                 <div className="table-wrapper">
                 <Toast ref={toast} />
             <div className="card">
                 <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
 
                 <DataTable ref={dt} value={roles} selection={selectedRoles} onSelectionChange={(e) => setSelectedRoles(e.value)}
-                        dataKey="id"  paginator rows={5} rowsPerPageOptions={[5, 10,15]}
+                        dataKey="id"  paginator rows={2} rowsPerPageOptions={[2,4,6,8]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" globalFilter={globalFilter} header={header}>
+                        currentPageReportTemplate=" Afficher {first} à {last} des {totalRecords} roles" globalFilter={globalFilter} header={header}>
                     <Column selectionMode="multiple" exportable={false}></Column>
                     <Column field="id" header="" style={{ minWidth: '5rem' }}></Column>
-                    <Column field="nom" header="Poste" sortable style={{ minWidth: '8rem' }}></Column>
+                    <Column field="nom" header="Poste" style={{ minWidth: '8rem' }}></Column>
                     <Column field="description" header="Description" style={{ minWidth: '18rem' }} ></Column>
-                    <Column field="crée" header="Date de création"  sortable style={{ minWidth: '8rem' }}></Column>
-                    <Column field="modifié" header="Dernière modification" sortable style={{ minWidth: '16rem' }}></Column>
-                    <Column body={actionBodyTemplate} exportable={false} style={{ minWidth: '12rem' }}></Column>
+                    <Column header="Action" body={actionBodyTemplate} exportable={false} style={{ minWidth: '12rem' }}></Column>
                 </DataTable>
             </div>
 
-            <Dialog visible={roleDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Product Details" modal className="p-fluid" footer={roleDialogFooter} onHide={hideDialog}>
+            <Dialog visible={roleDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Role" modal className="p-fluid" footer={roleDialogFooter} onHide={hideDialog}>
 
                 <div className="field">
                     <label htmlFor="name" className="font-bold">

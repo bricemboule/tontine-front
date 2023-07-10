@@ -68,9 +68,9 @@ export default function Lister(){
                                                 <td>{user.telephone1}</td>
                                                 <td className="text-center">{user.email}</td>
                                                 <td className="text-center">
-                                                    <button className="btn btn-link" > <Link to={`/admin/users/${user.id}/afficher`}><i className="far fa-eye text-yellow"></i></Link> </button>
-                                                    <button className="btn btn-link" ><Link to={`/admin/users/${user.id}/modifier`}> <i className="far fa-edit text-green"></i></Link> </button>
-                                                    <button className="btn btn-link " onClick={()=>SupprimerUser(user.id)}> <i className="far fa-trash-alt text-red"></i></button>
+                                                    <button className="btn btn-link" > <Link to={`/admin/users/${user.id}/afficher`}><i className="far fa-eye text-yellow circle"></i></Link> </button>
+                                                    <button className="btn btn-link" ><Link to={`/admin/users/${user.id}/modifier`}> <i className="far fa-edit text-green rounded"></i></Link> </button>
+                                                    <button className="btn btn-link " onClick={()=>SupprimerUser(user.id)}> <i className="far fa-trash-alt text-red rounded"></i></button>
                                                 </td>
                                             </tr>
                                         )
