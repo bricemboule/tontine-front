@@ -1,6 +1,3 @@
-import "admin-lte/plugins/jquery/jquery"
-import "admin-lte/plugins/bootstrap/js/bootstrap.bundle"
-import "admin-lte/dist/js/adminlte"
 
 import { Link } from "react-router-dom"
 
@@ -19,9 +16,9 @@ export default function Header(){
 
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item dropdown">
-                    <a className="nav-link" data-toggle="dropdown" href="#">
-                    <i className="far fa-bell"></i>
-                    <span className="badge badge-warning navbar-badge">15</span>
+                        <a className="nav-link" data-toggle="dropdown" href="#">
+                        <i className="far fa-bell"></i>
+                        <span className="badge badge-warning navbar-badge">15</span>
                     </a>
                     <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <span className="dropdown-header">15 Notifications</span>
@@ -46,9 +43,9 @@ export default function Header(){
                     </li>
                     
                     <li className="nav-item">
-                    <a className="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                    <i className="fas fa-user"></i>
-                    </a>
+                        <a className="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                            <i className="fas fa-user"></i>
+                        </a>
                     </li>
                 </ul>
             </nav>

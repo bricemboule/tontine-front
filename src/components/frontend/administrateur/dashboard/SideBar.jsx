@@ -10,7 +10,7 @@ export default function sidebar(){
 
     return(
 
-        <div >
+        
             <aside className="main-sidebar sidebar-dark-primary elevation-4">
 
                 <div className="sidebar">
@@ -22,21 +22,12 @@ export default function sidebar(){
                      
                     </div>
 
-                    <div className="form-inline">
-                        <div className="input-group" data-widget="sidebar-search">
-                        <input className="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search"/>
-                            <div className="input-group-append">
-                                <button className="btn btn-sidebar">
-                                    <i className="fas fa-search fa-fw"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                
 
                     <nav className="mt-2">
                         <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li className="nav-item menu-open">
-                                    <Link to="/admin" className="nav-link active">
+                                    <Link to="/admin" className="nav-link active text-decoration-none">
                                         <i className="nav-icon fas fa-home"></i>
                                         <p>
                                             Dashboard
@@ -45,7 +36,7 @@ export default function sidebar(){
                                     </Link>
                                 </li>
                             <li className="nav-item menu-open">
-                                <Link to="/admin" className="nav-link active">
+                                <Link to="/admin" className="nav-link active text-decoration-none">
                                     <i className="nav-icon fas fa-users"></i>
                                     <p>
                                         Utilisateurs
@@ -123,6 +114,6 @@ export default function sidebar(){
                     </nav>
                 </div>
             </aside>
-        </div> 
+       
     )
 }

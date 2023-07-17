@@ -60,7 +60,7 @@ export const RoleProvider = ({children})=>{
     const getUsers = async()=>{
 
         const apiUSers = await axios.get('users');
-        console.log(apiUSers);
+      
         setUsers(apiUSers.data.data);
     }
 
@@ -131,7 +131,7 @@ export const RoleProvider = ({children})=>{
 
         const response = await axios.post("logout");
         Swal.fire("Déconnexion réussie", response.data.message, "success");
-        navigate("/");
+        navigate("/login");
     }
 
     const SaveRole = async (e) =>{

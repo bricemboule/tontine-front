@@ -20,10 +20,8 @@ export default function AjouterRole(){
                 <br/>
                 <div className="row">
                     <div className = "col">
-                        <div className="card card-primary">
-                            <div className="card-header">
-                                <h3 className="card-title">Roles</h3>
-                            </div>
+                        <div className="card">
+                            
 
                             <form onSubmit={SaveRole}>
                                 <div className="card-body">
@@ -40,8 +38,8 @@ export default function AjouterRole(){
                                 
                                 </div>
 
-                                <div className="card-footer">
-                                    <button type="submit" className="btn btn-primary col-10 ml-4">Créer</button>
+                                <div className="card-footer ">
+                                    <button type="submit" className="btn btn-success ml-5 col-10 p-2">Créer</button>
                                 </div>
                             </form>
                         </div>

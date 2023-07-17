@@ -39,8 +39,6 @@ export default function ListerRole(){
         { field: 'id', header: '' },
         { field: 'nom', header: 'Nom' },
         { field: 'description', header: 'Description' },
-        { field: 'crée', header: 'Date création' },
-        {field : 'modifié', header:'Dernière modification'}
     ];
 
     const exportColumns = cols.map((col) => ({ title: col.header, dataKey: col.field }));
@@ -241,13 +239,14 @@ export default function ListerRole(){
                 
                 <div className="table-wrapper">
                 <Toast ref={toast} />
+                <br/>
             <div className="card">
-                <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                <Toolbar className="mb-4" left={leftToolbarTemplate} ></Toolbar>
 
                 <DataTable ref={dt} value={roles} selection={selectedRoles} onSelectionChange={(e) => setSelectedRoles(e.value)}
                         dataKey="id"  paginator rows={2} rowsPerPageOptions={[2,4,6,8]}
-                        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate=" Afficher {first} à {last} des {totalRecords} roles" globalFilter={globalFilter} header={header}>
+                        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                         globalFilter={globalFilter} header={header}>
                     <Column selectionMode="multiple" exportable={false}></Column>
                     <Column field="id" header="" style={{ minWidth: '5rem' }}></Column>
                     <Column field="nom" header="Poste" style={{ minWidth: '8rem' }}></Column>

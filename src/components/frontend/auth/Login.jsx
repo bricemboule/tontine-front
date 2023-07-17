@@ -1,11 +1,11 @@
 
-import {Form,Row,InputGroup,Col,Button,Image} from 'react-bootstrap'
+import {Form,Row,Col,Button,Image} from 'react-bootstrap'
 import './login.css'
 import "bootstrap/dist/css/bootstrap.min.css"
 import {useState} from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Register(){
@@ -40,7 +40,7 @@ export default function Register(){
                 if (res.data.status === 200){
                     localStorage.setItem('auth_token', res.data.token);
                     localStorage.setItem('auth_name', res.data.login);
-                    Swal.fire("Connexion réussie", res.data.message, "success");
+                    
                     console.log(res.data.role[0].pivot.dateDebut);
                     console.log(res.data.role[0].pivot.dateFinPrevue);
                     console.log(res.data.role[0].pivot.dateFinEffective);
@@ -114,7 +114,6 @@ export default function Register(){
                             </Form.Group>
 
                             <br />
-                            <p>Vous n'avez pas de compte ? Cliquez <Link to="/register">Ici</Link></p>
                            
                             <Button type="submit" className='btn btn-block col-12'>Se Connecter</Button>
 
