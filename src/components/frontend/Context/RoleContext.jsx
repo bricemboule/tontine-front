@@ -30,19 +30,14 @@ export const RoleProvider = ({children})=>{
 
     //Création d'un utilisateur
     const handleInput = (e) =>{
-
         e.persist();
-        console.log(e.target.name, e.target.value);
-       
         setUserInput({...userInput, [e.target.name] : e.target.value})
     }
 
     const handleChange1 = (e)=>{
         e.persist();
         const {name, value} = e.target;
-        console.log(e.target);
         setRoleValues({...roleValues, [name]:value});
-        console.log(roleValues);
     }
 
     const handleChange2 = (e)=>{
@@ -58,9 +53,7 @@ export const RoleProvider = ({children})=>{
     };
 
     const getUsers = async()=>{
-
         const apiUSers = await axios.get('users');
-      
         setUsers(apiUSers.data.data);
     }
 
@@ -98,9 +91,7 @@ export const RoleProvider = ({children})=>{
     };
 
     const modifierRole = async (e) =>{
-
         e.preventDefault();
-
         try {
             
             await axios.put("roles/" + role.id, roleValues);
@@ -114,21 +105,18 @@ export const RoleProvider = ({children})=>{
     }
 
     const SupprimerRole = async (id) =>{
-        
         await axios.delete("roles/" + id);
         getRoles();
         navigate("admin/roles/lister");
     }
 
     const SupprimerUser = async (id) =>{
-
         await axios.delete("users/" + id);
         getUsers();
         navigate("admin/utilisateur/lister");
     }
 
     const Deconnecter = async ()=>{
-
         const response = await axios.post("logout");
         Swal.fire("Déconnexion réussie", response.data.message, "success");
         navigate("/login");
@@ -153,12 +141,10 @@ export const RoleProvider = ({children})=>{
     const SaveUser = async (e)=>{
         e.preventDefault();
         try {
-            console.log("bonsoir");
             userInput.telephone1 = value;
             userInput.telephone2 = value1;
             await axios.post("users", userInput);
-            console.log(userInput);
-            console.log("bonne nuit");
+           
             getUsers();
             
             navigate("/admin/utilisateur/lister");

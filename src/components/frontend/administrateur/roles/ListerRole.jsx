@@ -35,13 +35,7 @@ export default function ListerRole(){
     const [globalFilter, setGlobalFilter] = useState(null);
     const toast = useRef(null);
     const dt = useRef(null);
-    const cols = [
-        { field: 'id', header: '' },
-        { field: 'nom', header: 'Nom' },
-        { field: 'description', header: 'Description' },
-    ];
-
-    const exportColumns = cols.map((col) => ({ title: col.header, dataKey: col.field }));
+  
 
 
    
@@ -132,16 +126,7 @@ export default function ListerRole(){
         return id;
     };
 
-    const exportPdf = () => {
-        import('jspdf').then((jsPDF) => {
-            import('jspdf-autotable').then(() => {
-                const doc = new jsPDF.default(0, 0);
-
-                doc.autoTable(exportColumns, roles);
-                doc.save('roles.pdf');
-            });
-        });
-    };
+ 
 
     const confirmDeleteSelected = () => {
         setDeleteRolesDialog(true);
@@ -177,12 +162,7 @@ export default function ListerRole(){
         );
     };
 
-    const rightToolbarTemplate = () => {
-        return <Button label="Exporter" icon="pi pi-upload" className="p-button-help" onClick={exportPdf} />;
-    };
-
   
-
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
@@ -241,6 +221,7 @@ export default function ListerRole(){
                 <Toast ref={toast} />
                 <br/>
             <div className="card">
+                {console.log(roles)}
                 <Toolbar className="mb-4" left={leftToolbarTemplate} ></Toolbar>
 
                 <DataTable ref={dt} value={roles} selection={selectedRoles} onSelectionChange={(e) => setSelectedRoles(e.value)}

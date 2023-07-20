@@ -1,7 +1,4 @@
-import "admin-lte/plugins/jquery/jquery"
-import "admin-lte/plugins/bootstrap/js/bootstrap.bundle"
-import "admin-lte/dist/js/adminlte"
-import "/public/css/home.css"
+
 import {Form,Row,Col,Button} from 'react-bootstrap'
 import 'react-phone-input-2/lib/style.css'
 import 'react-phone-number-input/style.css'

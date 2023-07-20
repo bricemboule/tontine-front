@@ -245,7 +245,7 @@ export default function Modifier(){
                 <br/>
                 
             <div className="card">
-
+            
                 {console.log(users)}
                 <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
 
@@ -253,10 +253,11 @@ export default function Modifier(){
                         dataKey="id"  paginator rows={2} rowsPerPageOptions={[5,10,15,20]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
                          globalFilter={globalFilter} header={header}>
+                       
                     <Column selectionMode="multiple" exportable={false}></Column>
                     <Column field="id" header="" style={{ minWidth: '5rem' }}></Column>
                     <Column field="nom" header="Nom" style={{ minWidth: '8rem' }}></Column>
-                    <Column field="nom" header="Poste occupé" style={{ minWidth: '18rem' }} ></Column>
+                    <Column field="" header="Poste occupé" style={{ minWidth: '18rem' }} ></Column>
                     <Column field="telephone1" header="Téléphone" style={{ minWidth: '18rem' }} ></Column>
                     <Column field="email" header="Email" style={{ minWidth: '18rem' }} ></Column>
                     <Column field="dateDebut" header="Date début" style={{ minWidth: '18rem' }} ></Column>
