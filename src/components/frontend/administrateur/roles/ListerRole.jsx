@@ -225,7 +225,7 @@ export default function ListerRole(){
                 <Toolbar className="mb-4" left={leftToolbarTemplate} ></Toolbar>
 
                 <DataTable ref={dt} value={roles} selection={selectedRoles} onSelectionChange={(e) => setSelectedRoles(e.value)}
-                        dataKey="id"  paginator rows={2} rowsPerPageOptions={[2,4,6,8]}
+                        dataKey="id"  paginator rows={5} rowsPerPageOptions={[5,10,15]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
                          globalFilter={globalFilter} header={header}>
                     <Column selectionMode="multiple" exportable={false}></Column>

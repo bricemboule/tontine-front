@@ -58,7 +58,7 @@ export default function Register(){
                         case 'secretaire' : 
                             navigate("/secretaire");
                             break;
-                        case 'tresorier' : 
+                        case 'trésorier' : 
                             navigate("/tresorier");
                             break;
                         case 'commissaire' : 

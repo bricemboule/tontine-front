@@ -17,7 +17,7 @@ export default function sidebar(){
 
                     <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div className="image">
-                            <Image src="/dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image"/>
+                            <Image src="" className="img-circle elevation-2" alt="User Image"/>
                         </div>
                      
                     </div>
@@ -56,18 +56,7 @@ export default function sidebar(){
                                             <p>Lister</p>
                                         </Link>
                                     </li>
-                                    <li className="nav-item">
-                                        <Link to="/admin/utilisateur/modifier" className="nav-link">
-                                            <i className="far fa-circle nav-icon"></i>
-                                            <p>Modifier</p>
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link to="/admin/utilisateur/supprimer" className="nav-link">
-                                            <i className="far fa-circle nav-icon"></i>
-                                            <p>Supprimer</p>
-                                        </Link>
-                                    </li>
+                                  
                             </ul>
                             
                             </li>

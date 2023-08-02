@@ -18,7 +18,7 @@ export default function sidebar(){
 
                     <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div className="image">
-                            <Image src="/dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image"/>
+                            <Image src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image"/>
                         </div>
                      
                     </div>
@@ -45,35 +45,147 @@ export default function sidebar(){
                                         </p>
                                     </Link>
                                 </li>
-                            <li className="nav-item menu-open">
+
+                                <li className="nav-item menu-open">
                                 <Link to="" className="nav-link active">
                                     <i className="nav-icon fas fa-users"></i>
                                     <p>
-                                        Membres
+                                      Cotisations
                                         <i className="right fas fa-angle-left"></i>
                                     </p>
                                 </Link>
                                 <ul className="nav nav-treeview">
                                     <li className="nav-item">
-                                        <Link to="membre/ajouter" className="nav-link active">
+                                        <Link to="cotisation/ajouter" className="nav-link active">
                                             <i className="far fa-circle nav-icon"></i>
                                             <p>Ajouter</p>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to="/membre/lister" className="nav-link">
+                                        <Link to="cotisation/lister" className="nav-link">
                                             <i className="far fa-circle nav-icon"></i>
                                             <p>Lister</p>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to="/membre/modifier" className="nav-link">
+                                        <Link to="cotisation/modifier" className="nav-link">
                                             <i className="far fa-circle nav-icon"></i>
                                             <p>Modifier</p>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to="/membre/supprimer" className="nav-link">
+                                        <Link to="cotisation/supprimer" className="nav-link">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Supprimer</p>
+                                        </Link>
+                                    </li>
+                            </ul>
+                            
+                                </li>
+
+                                <li className="nav-item menu-open">
+                                <Link to="" className="nav-link active">
+                                    <i className="nav-icon fas fa-users"></i>
+                                    <p>
+                                     Retraits
+                                        <i className="right fas fa-angle-left"></i>
+                                    </p>
+                                </Link>
+                                <ul className="nav nav-treeview">
+                                    <li className="nav-item">
+                                        <Link to="retrait/ajouter" className="nav-link active">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Ajouter</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="retrait/lister" className="nav-link">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Lister</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="retrait/modifier" className="nav-link">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Modifier</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="retrait/supprimer" className="nav-link">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Supprimer</p>
+                                        </Link>
+                                    </li>
+                            </ul>
+                            
+                                </li>
+
+                            <li className="nav-item menu-open">
+                                <Link to="" className="nav-link active">
+                                    <i className="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Intérêts
+                                        <i className="right fas fa-angle-left"></i>
+                                    </p>
+                                </Link>
+                                <ul className="nav nav-treeview">
+                                    <li className="nav-item">
+                                        <Link to="interet/ajouter" className="nav-link active">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Ajouter</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="interet/lister" className="nav-link">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Lister</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="interet/modifier" className="nav-link">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Modifier</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="interet/supprimer" className="nav-link">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Supprimer</p>
+                                        </Link>
+                                    </li>
+                            </ul>
+                            
+                            </li>
+
+                            <li className="nav-item menu-open">
+                                <Link to="" className="nav-link active">
+                                    <i className="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Dépenses
+                                        <i className="right fas fa-angle-left"></i>
+                                    </p>
+                                </Link>
+                                <ul className="nav nav-treeview">
+                                    <li className="nav-item">
+                                        <Link to="depense/ajouter" className="nav-link active">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Ajouter</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="depense/lister" className="nav-link">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Lister</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="depense/modifier" className="nav-link">
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Modifier</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="depense/supprimer" className="nav-link">
                                             <i className="far fa-circle nav-icon"></i>
                                             <p>Supprimer</p>
                                         </Link>
@@ -86,32 +198,32 @@ export default function sidebar(){
                                     <Link to="" className="nav-link active">
                                         <i className="nav-icon fas fa-user-plus"></i>
                                         <p>
-                                            Tontine
+                                            Prêts
                                             <i className="right fas fa-angle-left"></i>
                                         </p>
                                     </Link>
 
                                     <ul className="nav nav-treeview">
                                         <li className="nav-item">
-                                            <Link to="tontine/ajouter" className="nav-link active">
+                                            <Link to="pret/ajouter" className="nav-link active">
                                                 <i className="far fa-circle nav-icon"></i>
                                                 <p>Ajouter</p>
                                             </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="tontine/lister" className="nav-link">
+                                            <Link to="pret/lister" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
                                                 <p>Lister</p>
                                             </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="tontine/modifier" className="nav-link">
+                                            <Link to="pret/modifier" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
                                                 <p>Modifier</p>
                                             </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="tontine/supprimer" className="nav-link">
+                                            <Link to="pret/supprimer" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
                                                 <p>Supprimer</p>
                                             </Link>

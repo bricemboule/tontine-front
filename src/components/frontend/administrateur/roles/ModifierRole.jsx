@@ -17,7 +17,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 export default function ModifierRole(){
 
-    const {roles, getRoles,setRoles} = useContext(RoleContext);
+    const {roles, getRoles,ModifierRole,setRoles} = useContext(RoleContext);
 
     let emptyRole = {
         id: null,

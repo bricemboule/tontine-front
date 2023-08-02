@@ -11,8 +11,7 @@ export default function DashboardTresorier(){
         <div>
             <Header/>
             <SideBar/>
-            <Outlet/> 
-           <Content/> 
+           <Content/>
             <Footer/>
         </div>
     )

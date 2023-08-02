@@ -1,13 +1,11 @@
-
 import {Form,Row,Col,Button} from 'react-bootstrap'
-import 'react-phone-input-2/lib/style.css'
-import 'react-phone-number-input/style.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'react-phone-number-input/style.css'
-import 'react-phone-input-2'
 import PhoneInput from 'react-phone-input-2'
 import RoleContext from "../../Context/RoleContext"
 import { useContext,useEffect } from "react"
+import 'react-phone-input-2/lib/style.css'
+import 'react-phone-number-input/style.css'
+import 'react-phone-number-input/style.css'
+import 'react-phone-input-2'
 
 export default function ContentAjouter(){
 
@@ -25,7 +23,7 @@ export default function ContentAjouter(){
                 <div className="content">
                     <div className="container-fluid">
                         <div className="row">
-                        <h1>Utilisateurs</h1>
+                    
                             <Form onSubmit={SaveUser}>
                                 <Row className="mb-3">
                                     <Form.Group as={Col} controlId="formGridNom">
@@ -57,8 +55,8 @@ export default function ContentAjouter(){
                                         <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Votre sexe <span className='etoile'>*</span>   </Form.Label>
                                         <Form.Select aria-label="Default select example"  name='sexe' onChange={handleInput}>
                                                 <option value=""></option>
-                                                <option value="H">Homme</option>
-                                                <option value="F">Femme</option>
+                                                <option value="M">Masculin</option>
+                                                <option value="F">Feminin</option>
                                         </Form.Select>
                                     </Form.Group>
 
@@ -67,7 +65,7 @@ export default function ContentAjouter(){
                                                 <>
                                                     <Form.Group as={Col} controlId="formGridNomEpoux">
                                                         <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Nom de votre épouse <span className='etoile'>*</span>  </Form.Label>
-                                                        <Form.Control type="text" placeholder="Nom époux ou épouse"  name='nomEpouse' onChange={handleInput}/>
+                                                        <Form.Control type="text" placeholder="Nom époux ou épouse"  name='nomEpoux' onChange={handleInput}/>
                                                     </Form.Group>
 
                                                     <Form.Group as={Col} controlId="formGridNbFemme">

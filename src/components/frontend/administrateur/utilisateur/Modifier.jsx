@@ -1,312 +1,166 @@
-import {useEffect, useContext} from "react";
-import RoleContext from "../../Context/RoleContext";
-import React, { useState, useRef } from 'react';
-import { classNames } from 'primereact/utils';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Toast } from 'primereact/toast';
-import { Button } from 'primereact/button';
-import { Toolbar } from 'primereact/toolbar';
-import { Dialog } from 'primereact/dialog';
-import { InputText } from 'primereact/inputtext';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import {Form,Row,Col,Button} from 'react-bootstrap'
+import PhoneInput from 'react-phone-input-2'
+import RoleContext from "../../Context/RoleContext"
+import { useContext,useEffect,useState } from "react"
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 export default function Modifier(){
+    const [selected, setSelected] = useState(false);
+    const {roles, getRoles,user, setUser,getUser,modifierUser, handleInput} = useContext(RoleContext);
 
-    const {users, getUsers,setUsers} = useContext(RoleContext);
-
-    let emptyUser = {
-        id: null,
-        nom: '',
-        description: '',
-        crée: '',
-        modifié: '',
-    };
-   
-  
-    const [userDialog, setUserDialog] = useState(false);
-    const [deleteUserDialog, setDeleteUserDialog] = useState(false);
-    const [deleteUsersDialog, setDeleteUsersDialog] = useState(false);
-    const [user, setUser] = useState(emptyUser);
-    const [selectedUsers, setSelectedUsers] = useState(null);
-    const [submitted, setSubmitted] = useState(false);
-    const [globalFilter, setGlobalFilter] = useState(null);
-    const toast = useRef(null);
-    const dt = useRef(null);
-    const cols = [
-        { field: 'id', header: '' },
-        { field: 'nom', header: 'Nom' },
-        { field: 'description', header: 'Poste occupé' },
-        {field : 'telephone1', header : 'Téléphone'},
-        {field : 'email', header : 'Email'},
-        {field : 'dateDebut', header:'Date Debut'},
-        {fiel : 'dateFinPrevu', header : 'Date Echéance'}
-    ];
-
-    const exportColumns = cols.map((col) => ({ title: col.header, dataKey: col.field }));
-
-
-   
-    const openNew = () => {
-        setUser(emptyUser);
-        setSubmitted(false);
-        setUserDialog(true);
-    };
-
-    const hideDialog = () => {
-        setSubmitted(false);
-        setUserDialog(false);
-    };
-
-    const hideDeleteUserDialog = () => {
-        setDeleteUserDialog(false);
-    };
-
-    const hideDeleteUsersDialog = () => {
-        setDeleteUsersDialog(false);
-    };
-
-    const saveUser = () => {
-        setSubmitted(true);
-
-        if (user.nom.trim()) {
-            let _users = [...users];
-            let _user = { ...user};
-
-            if (user.id) {
-                const index = findIndexById(user.id);
-
-                _users[index] = _user;
-                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Utilisateur modifié avec succès', life: 3000 });
-            } else {
-                _user.id = createId();
-                
-                _users.push(_user);
-                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Utilisateur créé avec succès', life: 3000 });
-            }
-
-            setUsers(_users);
-            setUserDialog(false);
-            setUser(emptyUser);
-        }
-    };
-
-    const editUser = (user) => {
-        setUser({ ...user});
-        setUserDialog(true);
-    };
-
-    const confirmDeleteUser = (user) => {
-        setUser(user);
-        setDeleteUserDialog(true);
-    };
-
-    const deleteUser = () => {
-        let _users = users.filter((val) => val.id !==user.id);
-
-        setUsers(_users);
-        setDeleteUserDialog(false);
-        setUser(emptyUser);
-        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Utilisateur supprimé', life: 3000 });
-    };
-
-    const findIndexById = (id) => {
-        let index = -1;
-
-        for (let i = 0; i < users.length; i++) {
-            if (users[i].id === id) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-    };
-
-    const createId = () => {
-        let id = '';
-        let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-        for (let i = 0; i < 5; i++) {
-            id += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-
-        return id;
-    };
-
-    const exportPdf = () => {
-        import('jspdf').then((jsPDF) => {
-            import('jspdf-autotable').then(() => {
-                const doc = new jsPDF.default(0, 0);
-
-                doc.autoTable(exportColumns, users);
-                doc.save('users.pdf');
-            });
-        });
-    };
-
-    const confirmDeleteSelected = () => {
-        setDeleteUsersDialog(true);
-    };
-
-    const deleteSelectedUsers = () => {
-        let _users = users.filter((val) => !selectedUsers.includes(val));
-
-        setUser(_users);
-        setDeleteUsersDialog(false);
-        setSelectedUsers(null);
-        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Utilisateurs supprimés', life: 3000 });
-    };
-
-  
-
-    const onInputChange = (e, name) => {
-        const val = (e.target && e.target.value) || '';
-        let _user = { ...user};
-
-        _user[`${name}`] = val;
-
-        setUser(_user);
-    };
-
-
-    const leftToolbarTemplate = () => {
-        return (
-            <div className="d-flex flex-wrap gap-2">
-                <Button label="Nouvel Utilisateur" icon="pi pi-plus" severity="success" onClick={openNew} />
-                <Button label="Supprimer Utilisateur" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedUsers || !selectedUsers.length} />
-            </div>
-        );
-    };
-
-    const rightToolbarTemplate = () => {
-        return <Button label="Exporter" icon="pi pi-upload" className="p-button-help" onClick={exportPdf} />;
-    };
-
-  
-
-    const actionBodyTemplate = (rowData) => {
-        return (
-            <React.Fragment>
-                <Button icon="pi pi-pencil" rounded outlined className="mr-2" onClick={() => editUser(rowData)} />
-                <Button icon="pi pi-trash" rounded outlined severity="danger" onClick={() => confirmDeleteUser(rowData)} />
-            </React.Fragment>
-        );
-    };
-
-    const header = (
-        <div className="d-flex flex-wrap gap-2 align-items-center justify-content-between">
-            <h4 className="m-0">Gestion des utilisateur</h4>
-            <span className="p-input-icon-left">
-                <i className="pi pi-search" />
-                <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
-            </span>
-        </div>
-    );
-    const userDialogFooter = (
-        <React.Fragment>
-            <Button label="Annuler" icon="pi pi-times" outlined onClick={hideDialog} />
-            <Button label="Enregistrer" icon="pi pi-check" onClick={saveUser} />
-        </React.Fragment>
-    );
-
-
-    const deleteUserDialogFooter = (
-        <React.Fragment>
-            <Button label="Non" icon="pi pi-times" outlined onClick={hideDeleteUserDialog} />
-            <Button label="Oui" icon="pi pi-check" severity="danger" onClick={deleteUser} />
-        </React.Fragment>
-    );
-    const deleteUsersDialogFooter = (
-        <React.Fragment>
-            <Button label="Non" icon="pi pi-times" outlined onClick={hideDeleteUsersDialog} />
-            <Button label="Oui" icon="pi pi-check" severity="danger" onClick={deleteSelectedUsers} />
-        </React.Fragment>
-    );
+   let {id} = useParams();
 
 
     useEffect(()=>{
-        getUsers();
+        getUser(id);
+        getRoles();
     },[]);
 
-  
+
 
     return (
       
         
-        <div>
+        
         <div className="content-wrapper">
             <div className="content">
                 <div className="container-fluid">
                 
-                <div className="table-wrapper">
-                <Toast ref={toast} />
+                <div>
+               
                 <br/>
                 
             <div className="card">
-            
-                {console.log(users)}
-                <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
 
-                <DataTable ref={dt} value={users} selection={selectedUsers} onSelectionChange={(e) => setSelectedUsers(e.value)}
-                        dataKey="id"  paginator rows={2} rowsPerPageOptions={[5,10,15,20]}
-                        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-                         globalFilter={globalFilter} header={header}>
-                       
-                    <Column selectionMode="multiple" exportable={false}></Column>
-                    <Column field="id" header="" style={{ minWidth: '5rem' }}></Column>
-                    <Column field="nom" header="Nom" style={{ minWidth: '8rem' }}></Column>
-                    <Column field="" header="Poste occupé" style={{ minWidth: '18rem' }} ></Column>
-                    <Column field="telephone1" header="Téléphone" style={{ minWidth: '18rem' }} ></Column>
-                    <Column field="email" header="Email" style={{ minWidth: '18rem' }} ></Column>
-                    <Column field="dateDebut" header="Date début" style={{ minWidth: '18rem' }} ></Column>
-                    <Column field="dateFinPrevu" header="Date Fin" style={{ minWidth: '18rem' }} ></Column>
-                    <Column header="Action" body={actionBodyTemplate} exportable={false} style={{ minWidth: '12rem' }}></Column>
-                </DataTable>
+            <div className="d-flex space-between p-3 bg-gray-light">
+                 <h1>Modification d'un membre du bureau</h1>
             </div>
 
-            <Dialog visible={userDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Utilisateur" modal className="p-fluid" footer={userDialogFooter} onHide={hideDialog}>
+                   
+            <br/>
+            <div className="table-responsive p-2 bg-gray-light">
+                <Form onSubmit={modifierUser}>
+                    <Row className="mb-3">
+                        <Form.Group as={Col} controlId="formGridNom">
+                            <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Nom du membre  </Form.Label>
+                                <Form.Control type="text" placeholder="nom membre" name='nom' onChange={handleInput}  value={user.nom}/>
+                        </Form.Group>
 
-                <div className="field">
-                    <label htmlFor="name" className="font-bold">
-                        Nom
-                    </label>
-                    <InputText id="nom" value={user.nom} onChange={(e) => onInputChange(e, 'name')} required autoFocus className={classNames({ 'p-invalid': submitted && !user.nom })} />
-                    {submitted && !user.nom && <small className="p-error">Le nom est requis.</small>}
-                </div>
-                <div className="field">
-                    <label htmlFor="prenom" className="font-bold">
-                        Prenom
-                    </label>
-                    <InputText id="description" value={user.prenom} onChange={(e) => onInputChange(e, 'prenom')} required autoFocus className={classNames({ 'p-invalid': submitted && !user.prenom })}/>
-                </div>
+                        <Form.Group as={Col} controlId="formGridPrenom">
+                            <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Prenom du membre  </Form.Label>
+                             <Form.Control type="text" placeholder="prénom membre" name='prenom'  onChange={handleInput} value={user.prenom}/>
+                        </Form.Group>
+                    </Row>
 
-            </Dialog>
+                    <Row className="mb-3">
+                        <Form.Group as={Col} controlId="formGridNaissance">
+                            <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date de naissance  </Form.Label>
+                                <Form.Control type="date"  name='anneeNais' value={user.anneeNais}  onChange={handleInput}/>
+                        </Form.Group>
 
-            <Dialog visible={deleteUserDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Attention !!!" modal footer={deleteUserDialogFooter} onHide={hideDeleteUserDialog}>
-                <div className="confirmation-content">
-                    <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                    {user && (
-                        <span>
-                            Etes-vous sûr(e) de vouloir supprimer l'utilisateur <b>{user.nom}</b> ?
-                        </span>
-                    )}
-                </div>
-            </Dialog>
+                            <Form.Group as={Col} controlId="formGridEntre">
+                                <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date entrée </Form.Label>
+                                <Form.Control type="date"  name='anneeEntree' value={user.anneeEntree} onChange={handleInput}/>
+                            </Form.Group>
+                    </Row>
 
-            <Dialog visible={deleteUsersDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Confirm" modal footer={deleteUsersDialogFooter} onHide={hideDeleteUsersDialog}>
-                <div className="confirmation-content">
-                    <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                    {user && <span>Etes-vous de vouloir supprimer les utilisateurs sélectionnés ?</span>}
-                </div>
-            </Dialog>
+                    <Row className="mb-3">
+                      
+                        <Form.Group as={Col} controlId="formGridSexe">
+                            <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Votre sexe <span className='etoile'>*</span>   </Form.Label>
+                            <Form.Select value={((user.sex==='F') ? "Feminin" : "Masculin")}  name='sexe'  onChange={handleInput}>
+                                <option value=""></option>
+                                <option value="M">Masculin</option>
+                                <option value="F">Feminin</option>
+                            </Form.Select>
+                        </Form.Group>
+
+                            {
+                                (user.sex === 'M') ?   (
+                                    <>
+                                    <Form.Group as={Col} controlId="formGridNomEpoux">
+                                        <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Nom de votre épouse <span className='etoile'>*</span>  </Form.Label>
+                                        <Form.Control type="text" placeholder="Nom époux ou épouse" value={user.nomEpoux}  name='nomEpoux' onChange={handleInput}/>
+                                    </Form.Group>
+
+                                    <Form.Group as={Col} controlId="formGridNbFemme">
+                                        <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Nombre de Femme <span className='etoile'>*</span>  </Form.Label>
+                                        <Form.Control type="number" placeholder="Nombre de femme" defaultValue={0} name='nbDeFemme' value={user.nbDeFemme}  onChange={handleInput}/>
+                                    </Form.Group>
+                                    </>
+                                    ) :  (
+                                        <Form.Group as={Col} controlId="formGridNomEpoux" >
+                                            <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}} >Nom de votre Epoux<span className='etoile'>*</span>  </Form.Label>
+                                            <Form.Control type="text" placeholder="Nom époux ou épouse" value={user.nomEpoux}  name='nomEpoux' onChange={handleInput} />
+                                        </Form.Group>
+                                    )
+
+                            }
+                                
+                </Row>
+
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridTelephone1">
+                        <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}> Telephone 1</Form.Label>
+                        <Form.Control type="text" placeholder="votre téléphone" name='telephone1' onChange={handleInput}  value={user.telephone1}/>
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridTelephone2">
+                        <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}> Telephone 2  </Form.Label>
+                        <Form.Control type="text" placeholder="votre téléphone" name='telephone2' onChange={handleInput}  value={user.telephone2}/>
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridResposabilite">
+                        <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Responsabilité <span className='etoile'>*</span>   </Form.Label>
+                        <Form.Select aria-label="Default select example" value={user.role[0].nom}  name='role' onChange={handleInput}>
+                            <option value=""></option>
+                            {roles.map((role)=>{
+
+                                return (
+                                    <option key={role.id} value={role.nom}>{role.nom}</option>
+                                    )
+                            })}
+                        </Form.Select>
+                    </Form.Group>
+                </Row>
+
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridDateDebut">
+                        <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date début  <span className='etoile'>*</span> </Form.Label>
+                        <Form.Control type="date" value={user.role[0].pivot.dateDebut} name='dateDebut' onChange={handleInput}/>
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridDateFinPrevu">
+                        <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date fin prévue <span className='etoile'>*</span> </Form.Label>
+                        <Form.Control type="date" value={user.role[0].pivot.dateFinPrevue}  name='dateFinPrevu'  onChange={handleInput}/>
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridDateFinEffectuve">
+                        <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date fin effective   </Form.Label>
+                        <Form.Control type="date"   name='dateFinEffective' onChange={handleInput}/>
+                    </Form.Group>
+                </Row>
+                    
+                <br/>
+
+                <Button variant="primary" type="submit" className='btn btn-block col-11 ml-4'>
+                    Modifier
+                </Button>
+                    <br/>
+        </Form>
+        </div>
+               
+            </div>
+
+            
                 </div>
                    
                 </div>
 
             </div>
         </div>
-         </div>
+         
      )
 }

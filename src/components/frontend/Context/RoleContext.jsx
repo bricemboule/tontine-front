@@ -31,6 +31,7 @@ export const RoleProvider = ({children})=>{
     //Création d'un utilisateur
     const handleInput = (e) =>{
         e.persist();
+        console.log(e.target.value);
         setUserInput({...userInput, [e.target.name] : e.target.value})
     }
 
@@ -54,13 +55,14 @@ export const RoleProvider = ({children})=>{
 
     const getUsers = async()=>{
         const apiUSers = await axios.get('users');
+       
         setUsers(apiUSers.data.data);
     }
 
     const getUser = async (id) =>{
         const response = await axios.get('users/' +id);
         const apiUser = response.data.data;
-       
+             
         setUser(apiUser);
         setUserInput({
             nom: apiUser.nom,
@@ -75,7 +77,8 @@ export const RoleProvider = ({children})=>{
             login : apiUser.login,
             password : apiUser.password,
             email : apiUser.email,
-            photo: apiUser.photo
+            photo: apiUser.photo,
+            
         })
     };
 
@@ -98,7 +101,21 @@ export const RoleProvider = ({children})=>{
             getRoles();
             navigate("admin/roles/lister");
         } catch (e) {
-            if (e.response.statud === 422){
+            if (e.response.status === 422){
+                setErrors(e.response.data.errors);
+            }
+        }
+    }
+    const modifierUser = async (e) =>{
+
+        e.preventDefault();
+
+        try {
+            await axios.put("users/" + user.id, userInput);
+            getUsers();
+            navigate("admin/utilisateur/lister");
+        } catch (e) {
+            if(e.response.status===422){
                 setErrors(e.response.data.errors);
             }
         }
@@ -143,6 +160,8 @@ export const RoleProvider = ({children})=>{
         try {
             userInput.telephone1 = value;
             userInput.telephone2 = value1;
+
+            console.log(userInput);
             await axios.post("users", userInput);
            
             getUsers();
@@ -159,8 +178,8 @@ export const RoleProvider = ({children})=>{
 
 
         return (<RoleContext.Provider value={{
-            role, roles,errors,userInput,users,value,value1, setValue, setValue1, getRole, getRoles, handleChange1,handleInput, handleChange2, 
-            roleValues,SupprimerUser,setRoles, SaveRole, Deconnecter,modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
+            role, roles,errors,userInput,user,users,value,value1, setValue, setValue1, getRole, getRoles, handleChange1,handleInput, handleChange2, 
+            roleValues,SupprimerUser,setRoles,setUser, SaveRole, modifierUser,Deconnecter,modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
             {children} 
         </RoleContext.Provider>);
 };
