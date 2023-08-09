@@ -11,7 +11,7 @@ export default function sidebar(){
     return(
 
         
-            <aside className="main-sidebar sidebar-dark-primary elevation-4">
+            <aside className="main-sidebar sidebar-dark-primary elevation-4" style={{position:"fixed", height:"100vh"}}>
 
                 <div className="sidebar">
 
@@ -83,18 +83,8 @@ export default function sidebar(){
                                                 <p>Lister</p>
                                             </Link>
                                         </li>
-                                        <li className="nav-item">
-                                            <Link to="roles/modifier" className="nav-link">
-                                                <i className="far fa-circle nav-icon"></i>
-                                                <p>Modifier</p>
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to="roles/supprimer" className="nav-link">
-                                                <i className="far fa-circle nav-icon"></i>
-                                                <p>Supprimer</p>
-                                            </Link>
-                                        </li>
+                                       
+                                      
                                     </ul>
                             </li>
                     

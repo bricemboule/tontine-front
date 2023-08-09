@@ -37,8 +37,8 @@ export default function App() {
                     <Route path='/admin/roles'>
                       <Route path='/admin/roles/ajouter' element={<AjouterRole/>}/>
                       <Route path='/admin/roles/lister' element={<ListerRole/>}/>
-                      <Route path='/admin/roles/modifier' element={<ModifierRole/>}/>
-                      <Route path='/admin/roles/supprimer' element={<SupprimerRole/>}/>
+                      <Route path='/admin/roles/:id/modifier' element={<ModifierRole/>}/>
+                      
                      
                     </Route>
 

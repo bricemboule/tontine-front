@@ -1,284 +1,174 @@
-import {useEffect, useContext} from "react";
+import {useEffect, useContext,useState} from "react";
 import RoleContext from "../../Context/RoleContext";
-import React, { useState, useRef } from 'react';
-import { classNames } from 'primereact/utils';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Toast } from 'primereact/toast';
-import { Button } from 'primereact/button';
-import { Toolbar } from 'primereact/toolbar';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { Dialog } from 'primereact/dialog';
-import { InputText } from 'primereact/inputtext';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { useParams } from "react-router-dom";
 
 
 export default function ListerRole(){
-    const {roles, getRoles,setRoles} = useContext(RoleContext);
 
-    let emptyRole = {
-        id: null,
-        nom: '',
-        description: '',
-        crée: '',
-        modifié: '',
-    };
-   
-  
-    const [roleDialog, setRoleDialog] = useState(false);
-    const [deleteRoleDialog, setDeleteRoleDialog] = useState(false);
-    const [deleteRolesDialog, setDeleteRolesDialog] = useState(false);
-    const [role, setRole] = useState(emptyRole);
-    const [selectedRoles, setSelectedRoles] = useState(null);
-    const [submitted, setSubmitted] = useState(false);
-    const [globalFilter, setGlobalFilter] = useState(null);
-    const toast = useRef(null);
-    const dt = useRef(null);
-  
-
-
-   
-    const openNew = () => {
-        setRole(emptyRole);
-        setSubmitted(false);
-        setRoleDialog(true);
-    };
-
-    const hideDialog = () => {
-        setSubmitted(false);
-        setRoleDialog(false);
-    };
-
-    const hideDeleteRoleDialog = () => {
-        setDeleteRoleDialog(false);
-    };
-
-    const hideDeleteRolesDialog = () => {
-        setDeleteRolesDialog(false);
-    };
-
-    const saveRole = () => {
-        setSubmitted(true);
-
-        if (role.nom.trim()) {
-            let _roles = [...roles];
-            let _role = { ...role };
-
-            if (role.id) {
-                const index = findIndexById(role.id);
-
-                _roles[index] = _role;
-                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Role modifié avec succès', life: 3000 });
-            } else {
-                _role.id = createId();
-                
-                _roles.push(_role);
-                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Role créé avec succès', life: 3000 });
-            }
-
-            setRoles(_roles);
-            setRoleDialog(false);
-            setRole(emptyRole);
-        }
-    };
-
-    const editRole = (role) => {
-        setRole({ ...role });
-        setRoleDialog(true);
-    };
-
-    const confirmDeleteRole = (role) => {
-        setRole(role);
-        setDeleteRoleDialog(true);
-    };
-
-    const deleteRole = () => {
-        let _roles = roles.filter((val) => val.id !== role.id);
-
-        setRoles(_roles);
-        setDeleteRoleDialog(false);
-        setRole(emptyRole);
-        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Role supprimé', life: 3000 });
-    };
-
-    const findIndexById = (id) => {
-        let index = -1;
-
-        for (let i = 0; i < roles.length; i++) {
-            if (roles[i].id === id) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-    };
-
-    const createId = () => {
-        let id = '';
-        let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-        for (let i = 0; i < 5; i++) {
-            id += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-
-        return id;
-    };
-
+    const {roles, getRoles,SupprimerRole,SaveRole,handleChange1,close, modifierRole,roleValues,getRole} = useContext(RoleContext);
  
-
-    const confirmDeleteSelected = () => {
-        setDeleteRolesDialog(true);
-    };
-
-    const deleteSelectedRoles = () => {
-        let _roles = roles.filter((val) => !selectedRoles.includes(val));
-
-        setRoles(_roles);
-        setDeleteRolesDialog(false);
-        setSelectedRoles(null);
-        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Roles supprimés', life: 3000 });
-    };
-
-  
-
-    const onInputChange = (e, name) => {
-        const val = (e.target && e.target.value) || '';
-        let _role = { ...role };
-
-        _role[`${name}`] = val;
-
-        setRole(_role);
-    };
-
-
-    const leftToolbarTemplate = () => {
-        return (
-            <div className="d-flex flex-wrap gap-2">
-                <Button label="Nouveau role" icon="pi pi-plus" severity="success" onClick={openNew} />
-                <Button label="Supprimer role" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedRoles || !selectedRoles.length} />
-            </div>
-        );
-    };
-
-  
-    const actionBodyTemplate = (rowData) => {
-        return (
-            <React.Fragment>
-                <Button icon="pi pi-pencil" rounded outlined className="mr-2" onClick={() => editRole(rowData)} />
-                <Button icon="pi pi-trash" rounded outlined severity="danger" onClick={() => confirmDeleteRole(rowData)} />
-            </React.Fragment>
-        );
-    };
-
-    const header = (
-        <div className="d-flex flex-wrap gap-2 align-items-center justify-content-between">
-            <h4 className="m-0">Gestion des roles</h4>
-            <span className="p-input-icon-left">
-                <i className="pi pi-search" />
-                <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
-            </span>
-        </div>
-    );
-    const roleDialogFooter = (
-        <React.Fragment>
-            <Button label="Annuler" icon="pi pi-times" outlined onClick={hideDialog} />
-            <Button label="Enregistrer" icon="pi pi-check" onClick={saveRole} />
-        </React.Fragment>
-    );
-
-
-    const deleteRoleDialogFooter = (
-        <React.Fragment>
-            <Button label="Non" icon="pi pi-times" outlined onClick={hideDeleteRoleDialog} />
-            <Button label="Oui" icon="pi pi-check" severity="danger" onClick={deleteRole} />
-        </React.Fragment>
-    );
-    const deleteRolesDialogFooter = (
-        <React.Fragment>
-            <Button label="Non" icon="pi pi-times" outlined onClick={hideDeleteRolesDialog} />
-            <Button label="Oui" icon="pi pi-check" severity="danger" onClick={deleteSelectedRoles} />
-        </React.Fragment>
-    );
-
-
+   let {id} =useParams()
     useEffect(()=>{
         getRoles();
+        
     },[]);
 
-  
+
 
     return (
       
         
-        <div>
+        
         <div className="content-wrapper">
             <div className="content">
                 <div className="container-fluid">
                 
                 <div className="table-wrapper">
-                <Toast ref={toast} />
+               
                 <br/>
+                
             <div className="card">
-                {console.log(roles)}
-                <Toolbar className="mb-4" left={leftToolbarTemplate} ></Toolbar>
 
-                <DataTable ref={dt} value={roles} selection={selectedRoles} onSelectionChange={(e) => setSelectedRoles(e.value)}
-                        dataKey="id"  paginator rows={5} rowsPerPageOptions={[5,10,15]}
-                        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-                         globalFilter={globalFilter} header={header}>
-                    <Column selectionMode="multiple" exportable={false}></Column>
-                    <Column field="id" header="" style={{ minWidth: '5rem' }}></Column>
-                    <Column field="nom" header="Poste" style={{ minWidth: '8rem' }}></Column>
-                    <Column field="description" header="Description" style={{ minWidth: '18rem' }} ></Column>
-                    <Column header="Action" body={actionBodyTemplate} exportable={false} style={{ minWidth: '12rem' }}></Column>
-                </DataTable>
+            <div className="d-flex space-between p-3 bg-gray-light">
+                        <div className="d-flex flex-wrap gap-2">
+
+                        <button type="button" className="btn btn-success"  style={{padding:"10px"}} data-toggle="modal" data-target="#NewRole" data-whatever="@getbootstrap">
+                                <i className="fa fa-plus pt-1"></i>
+                                <span className="pl-2"> Nouveau role</span>
+                        </button>
+
+                            <div className="modal fade" id="NewRole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal-dialog" role="document">
+                                <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title text-red" id="exampleModalLabel" >Nouveau Role</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    <form onSubmit={SaveRole}>
+                                    <div className="form-group">
+                                        <label for="recipient-name" className="col-form-label">Nom :</label>
+                                        <input type="text" name="nom" className="form-control" id="recipient-name" onChange={handleChange1}/>
+                                    </div>
+                                    <div className="form-group">
+                                        <label for="message-text" className="col-form-label">Description :</label>
+                                        <textarea className="form-control" name="description" id="message-text" onChange={handleChange1}></textarea>
+                                    </div>
+                                    <div className="modal-footer justify-content-center px-0 mx-0">
+                                        <button type="submit" className="btn btn-primary w-100" >Enregistrer</button>
+                                    </div>
+                                    </form>
+                                </div>
+                              
+                                </div>
+                            </div>
+                            </div>
+                            <button type="button" className="btn btn-danger" disabled>
+                                <i className="fa fa-trash pt-1"></i>
+                                <span className="pl-2">Supprimer role</span>
+                
+                            </button>
+                          
+                            
+                        </div> 
+                    </div>
+
+                    <div className="d-flex pl-2 pt-3 mt-4 bg-gray-light">
+                            <h3>Gestion des roles</h3>
+                        
+                            <div className="p-input-icon-left ml-auto mr-3">
+                                <i className="fa fa-search"></i>
+                                <input type="text" className="form-control pl-5 py-4 input-lg" placeholder="Rechercher..."/>
+                            </div>
+                           
+                    </div>
+
+                    <div className="modal fade" id="EditRole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal-dialog" role="document">
+                                <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title text-red" id="exampleModalLabel" >Modifer un Role</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    <form onSubmit={modifierRole}>
+                                    <div className="form-group">
+                                        <label for="recipient-name" className="col-form-label">Nom :</label>
+                                        <input type="text" name="nom" className="form-control" id="recipient-name" onChange={handleChange1} value={roleValues['nom']}/>
+                                    </div>
+                                    <div className="form-group">
+                                        <label for="message-text" className="col-form-label">Description :</label>
+                                        <textarea className="form-control" name="description" id="message-text" onChange={handleChange1} value={roleValues['description']}></textarea>
+                                    </div>
+                                    <div className="modal-footer justify-content-center px-0 mx-0">
+                                        <button type="submit" className="btn btn-primary w-100">Modifier</button>
+                                        {/* <button type="submit" className="btn btn-primary w-100" data-dismiss="EditRole">Modifier</button> */}
+                                    </div>
+                                    </form>
+                                </div>
+                              
+                                </div>
+                            </div>
+                    </div>
+            
+            <div className="table-responsive p-2 bg-gray-light">
+            <table id="paginationNumbers" className= "table"   width="100%">
+                <thead >
+                        <tr style={{height:"20%", backgroundColor:"gray"}} className="bg-gray">
+                        <th scope="col" className="p-3">
+                            <div className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                            </div>
+                        </th>
+                        <th scope="col" className="text-center width-20 p-3"></th>
+                        <th scope="col" className="text-center p-3" style={{width:"300px"}}>Poste</th>
+                        <th scope="col" className="text-center p-3" style={{width:"800px"}}>Description</th>
+                       
+                        <th scope="col" className="text-center p-3" style={{width:"200px"}}>Actions</th>
+                       
+                        </tr>
+                </thead>
+                <tbody>
+                   
+                    {roles.map((role)=> {
+                        
+                        return(
+                            <tr key={role.id} style={{height:"20%"}}>
+                            <th scope="row" className="p-3">
+                                <div className="form-check">
+                                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                </div>
+                            </th>
+                            <td className="text-center p-3">{role.id}</td>
+                            <td className="text-center p-3">{role.nom}</td>
+                            <td className="text-center p-3">{role.description}</td>
+                
+                           
+                            <td className="text-center p-3">
+                                <button className="btn btn-link btn-floating" data-toggle="modal" data-target="#EditRole" data-whatever="@getbootstrap" onClick={()=>getRole(role.id)}> <i className="far fa-edit text-green"></i> </button>
+                                <button className="btn btn-link btn-floating" onClick={()=>SupprimerRole(role.id)}> <i className="far fa-trash-alt text-red"></i></button>
+                            </td>
+                        </tr>
+                        ); }
+                    )}
+                  
+                </tbody>
+            </table>
+        </div>
+               
             </div>
 
-            <Dialog visible={roleDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Role" modal className="p-fluid" footer={roleDialogFooter} onHide={hideDialog}>
-
-                <div className="field">
-                    <label htmlFor="name" className="font-bold">
-                        Nom
-                    </label>
-                    <InputText id="nom" value={role.nom} onChange={(e) => onInputChange(e, 'name')} required autoFocus className={classNames({ 'p-invalid': submitted && !role.nom })} />
-                    {submitted && !role.nom && <small className="p-error">Le nom du role est requis.</small>}
-                </div>
-                <div className="field">
-                    <label htmlFor="description" className="font-bold">
-                        Description
-                    </label>
-                    <InputTextarea id="description" value={role.description} onChange={(e) => onInputChange(e, 'description')} required rows={3} cols={20} />
-                </div>
-
-            </Dialog>
-
-            <Dialog visible={deleteRoleDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Attention !!!" modal footer={deleteRoleDialogFooter} onHide={hideDeleteRoleDialog}>
-                <div className="confirmation-content">
-                    <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                    {role && (
-                        <span>
-                            Etes-vous sûr(e) de vouloir supprimer le role de <b>{role.nom}</b> ?
-                        </span>
-                    )}
-                </div>
-            </Dialog>
-
-            <Dialog visible={deleteRolesDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Confirm" modal footer={deleteRolesDialogFooter} onHide={hideDeleteRolesDialog}>
-                <div className="confirmation-content">
-                    <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                    {role && <span>Etes-vous de vouloir supprimer les roles sélectionnés ?</span>}
-                </div>
-            </Dialog>
+            
                 </div>
                    
                 </div>
 
             </div>
         </div>
-         </div>
+         
      )
 }
-
-

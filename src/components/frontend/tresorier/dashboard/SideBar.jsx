@@ -12,7 +12,7 @@ export default function sidebar(){
     return(
 
         <div >
-            <aside className="main-sidebar sidebar-dark-primary elevation-4">
+            <aside className="main-sidebar sidebar-dark-primary elevation-4" style={{position:"fixed", height:"100vh"}}>
 
                 <div className="sidebar">
 

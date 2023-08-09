@@ -43,7 +43,7 @@ export default function Register(){
                     
                     console.log(res.data.role[0].pivot.dateDebut);
                     console.log(res.data.role[0].pivot.dateFinPrevue);
-                    console.log(res.data.role[0].pivot.dateFinEffective);
+                    console.log(res.data.role[0].nom);
 
                     switch (res.data.role[0].nom){
                         case 'admin' :

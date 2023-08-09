@@ -61,7 +61,7 @@ export default function ContentAjouter(){
                                     </Form.Group>
 
                                     {
-                                        (userInput.sexe === 'H') ?   (
+                                        (userInput.sexe === 'M') ?   (
                                                 <>
                                                     <Form.Group as={Col} controlId="formGridNomEpoux">
                                                         <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Nom de votre épouse <span className='etoile'>*</span>  </Form.Label>
@@ -155,6 +155,9 @@ export default function ContentAjouter(){
                                 <Button variant="primary" type="submit" className='btn btn-block col-11 ml-4'>
                                     Créer
                                 </Button>
+
+                                <br/>
+                                <br/>
                             </Form>
                            
                         </div>

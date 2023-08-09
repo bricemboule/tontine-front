@@ -16,6 +16,8 @@ export const RoleProvider = ({children})=>{
     const [user,setUser] = useState([]);
     const [value1, setValue1] = useState();
     const [ value, setValue] = useState();
+    const [val, setVal] = useState(" ");
+    const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
 
     const [roleValues, setRoleValues] = useState({
@@ -28,6 +30,11 @@ export const RoleProvider = ({children})=>{
         description : ""
     });
 
+    const changeDisable = ()=>{
+        console.log("Valeur de départ : ", disabled);
+        setDisabled(true);
+        console.log("Valeur Après le State : ", disabled);
+    }
     //Création d'un utilisateur
     const handleInput = (e) =>{
         e.persist();
@@ -51,7 +58,7 @@ export const RoleProvider = ({children})=>{
     const getRoles  = async() =>{
         const apiRoles = await axios.get('roles');
         setRoles(apiRoles.data.data);
-    };
+    }
 
     const getUsers = async()=>{
         const apiUSers = await axios.get('users');
@@ -64,6 +71,7 @@ export const RoleProvider = ({children})=>{
         const apiUser = response.data.data;
              
         setUser(apiUser);
+        console.log(user);
         setUserInput({
             nom: apiUser.nom,
             prenom : apiUser.prenom,
@@ -78,6 +86,10 @@ export const RoleProvider = ({children})=>{
             password : apiUser.password,
             email : apiUser.email,
             photo: apiUser.photo,
+            role : apiUser.role[0].nom,
+            dateDebut : apiUser.role[0].pivot.dateDebut,
+            dateFinPrevue : apiUser.role[0].pivot.dateFinPrevue,
+            
             
         })
     };
@@ -87,19 +99,27 @@ export const RoleProvider = ({children})=>{
         const apiRole = response.data.data;
         
         setRole(apiRole);
+        console.log(role);
+       
         setRoleValues({
             nom : apiRole.nom,
             description : apiRole.description
         })
+       
     };
 
     const modifierRole = async (e) =>{
         e.preventDefault();
         try {
-            
+           
+           
             await axios.put("roles/" + role.id, roleValues);
+            console.log("Bonjour");
+            setVal("modal");
+            console.log("Valeur Finale : ", val);
             getRoles();
             navigate("admin/roles/lister");
+            setVal("")
         } catch (e) {
             if (e.response.status === 422){
                 setErrors(e.response.data.errors);
@@ -111,7 +131,9 @@ export const RoleProvider = ({children})=>{
         e.preventDefault();
 
         try {
+            console.log(userInput);
             await axios.put("users/" + user.id, userInput);
+            console.log(userInput);
             getUsers();
             navigate("admin/utilisateur/lister");
         } catch (e) {
@@ -122,6 +144,7 @@ export const RoleProvider = ({children})=>{
     }
 
     const SupprimerRole = async (id) =>{
+        console.log(id)
         await axios.delete("roles/" + id);
         getRoles();
         navigate("admin/roles/lister");
@@ -163,7 +186,7 @@ export const RoleProvider = ({children})=>{
 
             console.log(userInput);
             await axios.post("users", userInput);
-           
+            console.log("Bonsoir");
             getUsers();
             
             navigate("/admin/utilisateur/lister");
@@ -178,8 +201,8 @@ export const RoleProvider = ({children})=>{
 
 
         return (<RoleContext.Provider value={{
-            role, roles,errors,userInput,user,users,value,value1, setValue, setValue1, getRole, getRoles, handleChange1,handleInput, handleChange2, 
-            roleValues,SupprimerUser,setRoles,setUser, SaveRole, modifierUser,Deconnecter,modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
+            role, roles,errors,userInput,user,users,value,disabled,value1,close, setValue, setValue1, getRole, getRoles, handleChange1,handleInput, handleChange2, 
+            roleValues,SupprimerUser,setRoles,changeDisable,setUser, SaveRole, modifierUser,Deconnecter,modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
             {children} 
         </RoleContext.Provider>);
 };

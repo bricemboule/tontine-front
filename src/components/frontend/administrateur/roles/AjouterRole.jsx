@@ -26,20 +26,20 @@ export default function AjouterRole(){
                             <form onSubmit={SaveRole}>
                                 <div className="card-body">
                                     <div className="form-group">
-                                        <label >Nom</label>
-                                        <input name='nom' onChange={handleChange1} value={roleValues.nom.value} type="text" className="form-control" placeholder="Veuillez entrer un poste de responsabilité" />
+                                        <label >Nom : </label>
+                                        <input name='nom' onChange={handleChange1}  type="text" className="form-control"  placeholder="Le poste de responsabilité..."/>
                                         
                                     </div>
                                     <div className="form-group">
-                                        <label >Description</label>
-                                        <input name='description' onChange={handleChange1} value={roleValues.description.value} type="text" className="form-control"  placeholder="la description ici..."/>
+                                        <label >Description : </label>
+                                        <textarea name='description' onChange={handleChange1}  type="text" className="form-control"  placeholder="la description ici..."> </textarea>
                                         
                                     </div>
                                 
                                 </div>
 
-                                <div className="card-footer ">
-                                    <button type="submit" className="btn btn-success ml-5 col-10 p-2">Créer</button>
+                                <div className="card-footer justify-content-center w-100">
+                                    <button type="submit" className="btn btn-success" style={{width:"100%"}}>Créer</button>
                                 </div>
                             </form>
                         </div>
