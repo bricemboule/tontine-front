@@ -20,7 +20,7 @@ export default function Header(){
                         <i className="fas fa-bell"></i>
                         <span className="badge badge-warning" style={{borderRadius:"100%", fontSize: "10px", position: "relative", top: "-8px", left: "-7px", padding: "3px"}}>15</span>
                         {/* <span className="badge badge-warning navbar-badge">15</span> */}
-                    </a>
+                        </a>
                     <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <span className="dropdown-header">15 Notifications</span>
                     <div className="dropdown-divider"></div>

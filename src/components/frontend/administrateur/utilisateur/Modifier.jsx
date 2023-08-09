@@ -130,12 +130,18 @@ export default function Modifier(){
                                 <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Date fin effective   </Form.Label>
                                 <Form.Control type="date"   name='dateFinEffective' value={userInput.dateFinEffective} onChange={handleInput}/>
                             </Form.Group>
+                        </Row>   
 
+                        <Row className='mb-3'>
+                            <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
+                                <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Adresse mail  </Form.Label>
+                                <Form.Control placeholder="adresse mail" type='email' name='email' value={userInput.email} onChange={handleInput} />
+                            </Form.Group>
                             <Form.Group as={Col} className="mb-3" controlId="formGridPhoto">
-                                <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Photo  </Form.Label>
+                            <Form.Label style={{ fontWeight: "bolder", fontSize: "15px" }}>Photo  </Form.Label>
                                 <Form.Control type='file' name='photo' onChange={handleInput}/>
                             </Form.Group>
-                        </Row>   
+                        </Row>
                                     
                         <Button variant="primary" type="submit" className='btn btn-block col-11 ml-4'>
                             Modifier

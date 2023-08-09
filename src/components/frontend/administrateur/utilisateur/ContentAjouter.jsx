@@ -74,10 +74,21 @@ export default function ContentAjouter(){
                                                     </Form.Group>
                                                 </>
                                             ) :  (
-                                                <Form.Group as={Col} controlId="formGridNomEpoux" >
-                                                    <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}} >Nom de votre Epoux<span className='etoile'>*</span>  </Form.Label>
-                                                    <Form.Control type="text" placeholder="Nom époux ou épouse"  name='nomEpoux' onChange={handleInput} />
-                                                </Form.Group>
+                                                <>
+                                                    <Form.Group as={Col} controlId="formGridNomEpoux" >
+                                                        <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}} >Nom de votre Epoux<span className='etoile'>*</span>  </Form.Label>
+                                                        <Form.Control type="text" placeholder="Nom époux ou épouse"  name='nomEpoux' onChange={handleInput} />
+                                                    </Form.Group>
+
+                                                    <Form.Group as={Col} controlId="formGridNbFemme">
+                                                        <Form.Label style={{fontWeight : "bolder", fontSize:"15px"}}>Nombre de Femme <span className='etoile'>*</span>  </Form.Label>
+                                                        <Form.Select aria-label="Default select example"  name='nbDeFemme' onChange={handleInput}>
+                                                            <option value=""></option>
+                                                            <option value="0">0</option>
+                                                            <option value="1">1</option>
+                                                        </Form.Select>
+                                                    </Form.Group>
+                                                </>
                                             )
 
                                     }

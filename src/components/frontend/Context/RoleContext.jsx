@@ -156,6 +156,12 @@ export const RoleProvider = ({children})=>{
         navigate("admin/utilisateur/lister");
     }
 
+    const SupprimerMembre = async (id) =>{
+        await axios.delete("users/" + id);
+        getUsers();
+        navigate("secretaire/membre/lister");
+    }
+
     const Deconnecter = async ()=>{
         const response = await axios.post("logout");
         Swal.fire("Déconnexion réussie", response.data.message, "success");
@@ -198,11 +204,30 @@ export const RoleProvider = ({children})=>{
         }
     }
 
+    const SaveMember = async (e)=>{
+        e.preventDefault();
+        try {
+            userInput.telephone1 = value;
+            userInput.telephone2 = value1;
+
+            console.log(userInput);
+            await axios.post("users", userInput);
+            getUsers();
+            
+            navigate("/secretaire/membre/lister");
+            
+        } catch (e) {
+            if(e.response.status === 422){
+                setErrors(e.response.data.errors);
+            }  
+        }
+    }
+
 
 
         return (<RoleContext.Provider value={{
             role, roles,errors,userInput,user,users,value,disabled,value1,close, setValue, setValue1, getRole, getRoles, handleChange1,handleInput, handleChange2, 
-            roleValues,SupprimerUser,setRoles,changeDisable,setUser, SaveRole, modifierUser,Deconnecter,modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
+            roleValues,SupprimerUser,setRoles,changeDisable,setUser, SaveRole,SaveMember, modifierUser,Deconnecter,modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
             {children} 
         </RoleContext.Provider>);
 };

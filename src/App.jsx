@@ -16,8 +16,9 @@ import DashboardVicePresident from './components/frontend/vice_president/dashboa
 import DashboardPresident from './components/frontend/president/dashboard copy/DashboardPresident';
 import Modifier from './components/frontend/administrateur/utilisateur/Modifier';
 import ModifierRole from './components/frontend/administrateur/roles/ModifierRole';
-import SupprimerRole from './components/frontend/administrateur/roles/SupprimerRole';
-
+import ListerMembre from './components/frontend/secretaire/membre/ListerMembre';
+import ModifierMembre from './components/frontend/secretaire/membre/ModifierMembre';
+import AjouterMembre from './components/frontend/secretaire/membre/AjouterMembre';
 
 export default function App() {
   return  (
@@ -46,9 +47,10 @@ export default function App() {
 
                 <Route path='/secretaire' element={<DashboardSecretaire/>}>
                     <Route path='/secretaire/membre'>
-                        <Route path='/secretaire/membre/ajouter' element={<Ajouter/>}/>
-                        <Route path='/secretaire/membre/lister' element={<Lister/>}/>
-                        <Route path='/secretaire/membre/afficher' element={<ListerRole/>}/>
+                        <Route path='/secretaire/membre/ajouter' element={<AjouterMembre/>}/>
+                        <Route path='/secretaire/membre/lister' element={<ListerMembre/>}/>
+                        <Route path='/secretaire/membre/:id/modifier' element={<ModifierMembre/>}/>
+                        
                     </Route>
 
                     <Route path='/secretaire/tontine'>

@@ -46,7 +46,7 @@ export default function sidebar(){
                                     </Link>
                                 </li>
                             <li className="nav-item menu-open">
-                                <Link to="" className="nav-link active">
+                                <Link to="/secretaire/membre" className="nav-link active">
                                     <i className="nav-icon fas fa-users"></i>
                                     <p>
                                         Membres
@@ -55,29 +55,18 @@ export default function sidebar(){
                                 </Link>
                                 <ul className="nav nav-treeview">
                                     <li className="nav-item">
-                                        <Link to="membre/ajouter" className="nav-link active">
+                                        <Link to="/secretaire/membre/ajouter" className="nav-link active">
                                             <i className="far fa-circle nav-icon"></i>
                                             <p>Ajouter</p>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to="/membre/lister" className="nav-link">
+                                        <Link to="/secretaire/membre/lister" className="nav-link">
                                             <i className="far fa-circle nav-icon"></i>
                                             <p>Lister</p>
                                         </Link>
                                     </li>
-                                    <li className="nav-item">
-                                        <Link to="/membre/modifier" className="nav-link">
-                                            <i className="far fa-circle nav-icon"></i>
-                                            <p>Modifier</p>
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link to="/membre/supprimer" className="nav-link">
-                                            <i className="far fa-circle nav-icon"></i>
-                                            <p>Supprimer</p>
-                                        </Link>
-                                    </li>
+                                    
                             </ul>
                             
                             </li>
