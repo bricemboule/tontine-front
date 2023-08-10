@@ -9,7 +9,7 @@ import RoleContext from "../../Context/RoleContext"
 
 
 
-export default function Lister(){
+export default function ListerMembre(){
 
    const {getUsers, users, SupprimerMembre} = useContext(RoleContext);
 
@@ -47,7 +47,7 @@ export default function Lister(){
                     </div>
                     
                     <div className="d-flex pl-2 pt-3 mt-4 bg-gray-light">
-                        <h3>Gestion des utilisateur</h3>
+                        <h3 className="pl-3">Gestion des utilisateur</h3>
                         <div className="p-input-icon-left ml-auto mr-3">
                             <i className="fa fa-search"></i>
                             <input type="text" className="form-control pl-5 py-4 input-lg" placeholder="Rechercher..."/>
@@ -63,16 +63,15 @@ export default function Lister(){
                             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                             </div>
                         </th>
-                        <th scope="col" className="text-center width-20 p-3" style={{width:"100px"}}></th>
-                        <th scope="col" className="text-center width-20 p-3" style={{width:"600px"}}>Nom</th>
-                        <th scope="col" className="text-center p-3" style={{width:"400px"}}>Epoux/Epse</th>
-                        <th scope="col" className="text-center p-3" style={{width:"2000px"}}>Date Entrée</th>
-                        <th scope="col" className="text-center p-3" style={{width:"600px"}}>Poste</th>
-                        <th scope="col" className="text-center p-3" style={{width:"150px"}}>Téléphone</th>
-                        <th scope="col" className="text-center p-3" style={{width:"900px"}}>Email</th>
-                        <th scope="col" className="text-center p-3" style={{width:"600px"}}>Statut</th>
+                        <th scope="col" className="text-center width-20 p-3" style={{width:"10px"}}></th>
+                        <th scope="col" className="text-center width-20 p-3" style={{width:"100px"}}>Nom</th>
+                        <th scope="col" className="text-center p-3" style={{width:"250px"}}>Date Entrée</th>
+                        <th scope="col" className="text-center p-3" style={{width:"50px"}}>Poste</th>
+                        <th scope="col" className="text-center p-3" style={{width:"5px"}}>Téléphone</th>
+                        <th scope="col" className="text-center p-3" style={{width:"5px"}}>Email</th>
+                        <th scope="col" className="text-center p-3" style={{width:"400px"}}>Statut</th>
                        
-                        <th scope="col" className="text-center p-3" style={{width:"600px"}}>Actions</th>
+                        <th scope="col" className="text-center p-3" style={{width:"390px"}}>Actions</th>
                         </tr>
                 </thead>
                 <tbody>
@@ -86,14 +85,20 @@ export default function Lister(){
                             </th>
                             <td className="text-center p-3"></td>
                             <td className="text-center p-3">{user.nom} {user.prenom}</td>
-                            <td className="text-center p-3">{user.nomEpoux}</td>
+                          
                            
                             <td className="text-center p-3">{user.anneeEntree}</td>
                           
                             <td className="text-center p-3">{user.role[0].nom}</td>
                             <td className="text-center p-3">{user.telephone1}</td>
                             <td className="text-center p-3">{user.email}</td>
-                            <td className="text-center p-3"></td>
+                           {
+                                (user.valide === 1) ? (
+                                    <td className="text-center p-3"> <div className="bg-success rounded-pill p-1"> valider</div> </td>
+                                ) : (
+                                    <td className="text-center p-3"> <div className="bg-danger rounded-pill p-1"> non valider</div> </td>
+                                )
+                           }
                             <td className="text-center p-3">
                             
                                 <button className="btn btn-link btn-floating" ><Link to={`/secretaire/membre/${user.id}/modifier`}> <i className="far fa-edit text-green"></i></Link> </button>

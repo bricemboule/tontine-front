@@ -46,13 +46,13 @@ export default function sidebar(){
                                     </Link>
                                 </li>
                             <li className="nav-item menu-open">
-                                <Link to="/secretaire/membre" className="nav-link active">
+                                <div className="nav-link active">
                                     <i className="nav-icon fas fa-users"></i>
                                     <p>
                                         Membres
                                         <i className="right fas fa-angle-left"></i>
                                     </p>
-                                </Link>
+                                </div>
                                 <ul className="nav nav-treeview">
                                     <li className="nav-item">
                                         <Link to="/secretaire/membre/ajouter" className="nav-link active">
@@ -72,13 +72,13 @@ export default function sidebar(){
                             </li>
 
                             <li className="nav-item ">
-                                    <Link to="" className="nav-link active">
+                                    <div className="nav-link active">
                                         <i className="nav-icon fas fa-user-plus"></i>
                                         <p>
                                             Tontine
                                             <i className="right fas fa-angle-left"></i>
                                         </p>
-                                    </Link>
+                                    </div>
 
                                     <ul className="nav nav-treeview">
                                         <li className="nav-item">
@@ -93,18 +93,7 @@ export default function sidebar(){
                                                 <p>Lister</p>
                                             </Link>
                                         </li>
-                                        <li className="nav-item">
-                                            <Link to="tontine/modifier" className="nav-link">
-                                                <i className="far fa-circle nav-icon"></i>
-                                                <p>Modifier</p>
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to="tontine/supprimer" className="nav-link">
-                                                <i className="far fa-circle nav-icon"></i>
-                                                <p>Supprimer</p>
-                                            </Link>
-                                        </li>
+                                      
                                     </ul>
                             </li>
                     

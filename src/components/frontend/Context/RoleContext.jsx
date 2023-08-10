@@ -13,6 +13,8 @@ export const RoleProvider = ({children})=>{
     const [errors, setErrors] = useState([]);
     const [userInput, setUserInput] = useState([]);
     const [users, setUsers] = useState([]);
+    const [tontines, setTontines] = useState([]);
+    const [tontine, setTontine] = useState([]);
     const [user,setUser] = useState([]);
     const [value1, setValue1] = useState();
     const [ value, setValue] = useState();
@@ -23,6 +25,14 @@ export const RoleProvider = ({children})=>{
     const [roleValues, setRoleValues] = useState({
         nom : "",
         description : ""
+    });
+
+    const [tontineValue, setTontineValues] = useState({
+        nom : "",
+        nbDeParticipants : "",
+        dateDebut : "",
+        dateFin : "",
+        observation : ""
     });
 
     const [permission, setPermission] = useState({
@@ -48,6 +58,14 @@ export const RoleProvider = ({children})=>{
         setRoleValues({...roleValues, [name]:value});
     }
 
+    const handleChangeTontine = (e) => {
+
+        e.persist();
+        console.log(e.target.value);
+        const {name, value} = e.target;
+        setTontineValues({...tontineValue, [name] : value});
+    }
+
     const handleChange2 = (e)=>{
         e.persist();
         const name = e.target.name;
@@ -64,6 +82,12 @@ export const RoleProvider = ({children})=>{
         const apiUSers = await axios.get('users');
        
         setUsers(apiUSers.data.data);
+    }
+
+    const getTontines = async()=>{
+
+        const apiTontines = await axios.get('tontines');
+        setTontines(apiTontines.data.data);
     }
 
     const getUser = async (id) =>{
@@ -88,25 +112,33 @@ export const RoleProvider = ({children})=>{
             photo: apiUser.photo,
             role : apiUser.role[0].nom,
             dateDebut : apiUser.role[0].pivot.dateDebut,
-            dateFinPrevue : apiUser.role[0].pivot.dateFinPrevue,
-            
-            
-        })
-    };
+            dateFinPrevue : apiUser.role[0].pivot.dateFinPrevue,    
+        });
+    }
 
     const getRole = async (id) =>{
         const response = await axios.get("roles/" + id);
         const apiRole = response.data.data;
-        
         setRole(apiRole);
-        console.log(role);
-       
         setRoleValues({
             nom : apiRole.nom,
             description : apiRole.description
-        })
-       
-    };
+        });
+    }
+
+    const getTontine = async(id) =>{
+        const response = await axios.get("tontines/" + id);
+        const apiTontine = response.data.data;
+        setTontine(apiTontine);
+        console.log(apiTontine);
+        setTontineValues({
+            nom: apiTontine.nom,
+            nbDeParticipants : apiTontine.nbDeParticipants,
+            dateDebut : apiTontine.dateDebut,
+            dateFin : apiTontine.dateFin,
+            observation : apiTontine.observation
+        });
+    }
 
     const modifierRole = async (e) =>{
         e.preventDefault();
@@ -126,19 +158,48 @@ export const RoleProvider = ({children})=>{
             }
         }
     }
+
     const modifierUser = async (e) =>{
 
         e.preventDefault();
 
         try {
-            console.log(userInput);
+            
             await axios.put("users/" + user.id, userInput);
-            console.log(userInput);
             getUsers();
             navigate("admin/utilisateur/lister");
         } catch (e) {
             if(e.response.status===422){
                 setErrors(e.response.data.errors);
+            }
+        }
+    }
+
+    const modifierMembre = async (e) =>{
+        e.preventDefault();
+
+        try {
+            await axios.put("users/" + user.id, userInput);
+            getUsers();
+            navigate("secretaire/membre/lister");
+        } catch (e) {
+            if(e.response.status===422){
+                setErrors(e.response.data.errors);
+            }
+        }
+    }
+
+    const modifierTontine = async(e)=>{
+        e.preventDefault();
+
+        try {
+            console.log(tontine.id);
+            await axios.put("tontines/" + tontine.id, tontineValue);
+            getTontines();
+            navigate("secretaire/tontine/lister");
+        } catch (e) {
+            if(e.response.status === 422){
+                setErrors(e.response.data);
             }
         }
     }
@@ -160,6 +221,13 @@ export const RoleProvider = ({children})=>{
         await axios.delete("users/" + id);
         getUsers();
         navigate("secretaire/membre/lister");
+    }
+
+    const SupprimerTontine = async(id) =>{
+
+        await axios.delete("tontines/" +id);
+        getTontines();
+        navigate("secretaire/tontine/lister");
     }
 
     const Deconnecter = async ()=>{
@@ -187,10 +255,7 @@ export const RoleProvider = ({children})=>{
     const SaveUser = async (e)=>{
         e.preventDefault();
         try {
-            userInput.telephone1 = value;
-            userInput.telephone2 = value1;
-
-            console.log(userInput);
+           
             await axios.post("users", userInput);
             console.log("Bonsoir");
             getUsers();
@@ -207,10 +272,7 @@ export const RoleProvider = ({children})=>{
     const SaveMember = async (e)=>{
         e.preventDefault();
         try {
-            userInput.telephone1 = value;
-            userInput.telephone2 = value1;
-
-            console.log(userInput);
+          
             await axios.post("users", userInput);
             getUsers();
             
@@ -223,11 +285,34 @@ export const RoleProvider = ({children})=>{
         }
     }
 
+    const SaveTontine = async (e)=>{
+        e.preventDefault();
+
+        try {
+
+                console.log(tontineValue);
+                await axios.post("tontines", tontineValue);
+                getTontines();
+                navigate("secretaire/tontine/lister");
+            
+        } catch (e) {
+            if(e.response.data.errors){
+                setErrors(e.response.data.errors);
+            }
+            
+        }
+    }
+
 
 
         return (<RoleContext.Provider value={{
-            role, roles,errors,userInput,user,users,value,disabled,value1,close, setValue, setValue1, getRole, getRoles, handleChange1,handleInput, handleChange2, 
-            roleValues,SupprimerUser,setRoles,changeDisable,setUser, SaveRole,SaveMember, modifierUser,Deconnecter,modifierRole, SupprimerRole, SaveUser,getUsers,getUser}}> 
+            role, roles,errors,userInput,user,users,value,tontines,disabled,value1,roleValues,tontineValue,
+            close, setValue, setValue1,getTontines,modifierTontine,getTontine,
+            getRole, getRoles, handleChange1,handleInput, handleChange2, 
+            SupprimerUser,setRoles,SaveTontine,handleChangeTontine,
+            SupprimerTontine,changeDisable,setUser,modifierMembre,SupprimerMembre, 
+            SaveRole,SaveMember, modifierUser,Deconnecter,modifierRole, 
+            SupprimerRole, SaveUser,getUsers,getUser}}> 
             {children} 
         </RoleContext.Provider>);
 };

@@ -19,6 +19,9 @@ import ModifierRole from './components/frontend/administrateur/roles/ModifierRol
 import ListerMembre from './components/frontend/secretaire/membre/ListerMembre';
 import ModifierMembre from './components/frontend/secretaire/membre/ModifierMembre';
 import AjouterMembre from './components/frontend/secretaire/membre/AjouterMembre';
+import CreerTontine from './components/frontend/secretaire/tontine/CreerTontine';
+import ListerTontine from './components/frontend/secretaire/tontine/ListerTontine';
+import ModifierTontine from './components/frontend/secretaire/tontine/ModifierTontine';
 
 export default function App() {
   return  (
@@ -54,9 +57,9 @@ export default function App() {
                     </Route>
 
                     <Route path='/secretaire/tontine'>
-                        <Route path='/secretaire/tontine/ajouter' element={<Ajouter/>}/>
-                        <Route path='/secretaire/tontine/lister' element={<Lister/>}/>
-                        <Route path='/secretaire/tontine/afficher' element={<ListerRole/>}/>
+                        <Route path='/secretaire/tontine/ajouter' element={<CreerTontine/>}/>
+                        <Route path='/secretaire/tontine/lister' element={<ListerTontine/>}/>
+                        <Route path='/secretaire/tontine/:id/modifier' element={<ModifierTontine/>}/>
                     </Route>
 
                 </Route>
@@ -70,7 +73,7 @@ export default function App() {
                     </Route>
 
                     <Route path='/president/tontine'>
-                        <Route path='/president/tontine/ajouter' element={<Ajouter/>}/>
+                        <Route path='/president/tontine/ajouter' element={<CreerTontine/>}/>
                         <Route path='/president/tontine/lister' element={<Lister/>}/>
                         <Route path='/president/tontine/afficher' element={<ListerRole/>}/>
                     </Route>
