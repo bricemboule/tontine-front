@@ -97,7 +97,56 @@ export default function sidebar(){
                                     </ul>
                             </li>
                     
+                            <li className="nav-item ">
+                                    <div className="nav-link active">
+                                        <i className="nav-icon fas fa-user-plus"></i>
+                                        <p>
+                                            Séances
+                                            <i className="right fas fa-angle-left"></i>
+                                        </p>
+                                    </div>
 
+                                    <ul className="nav nav-treeview">
+                                        <li className="nav-item">
+                                            <Link to="seance/ajouter" className="nav-link active">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>Ajouter</p>
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link to="seance/lister" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>Lister</p>
+                                            </Link>
+                                        </li>
+                                      
+                                    </ul>
+                            </li>
+                            <li className="nav-item ">
+                                    <div className="nav-link active">
+                                        <i className="nav-icon fas fa-user-plus"></i>
+                                        <p>
+                                            Suspensions
+                                            <i className="right fas fa-angle-left"></i>
+                                        </p>
+                                    </div>
+
+                                    <ul className="nav nav-treeview">
+                                        <li className="nav-item">
+                                            <Link to="suspension/suspendre" className="nav-link active">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>Susprendre</p>
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link to="suspension/lister" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>Lister</p>
+                                            </Link>
+                                        </li>
+                                      
+                                    </ul>
+                            </li>
                         </ul>
                     </nav>
                 </div>

@@ -11,6 +11,7 @@ export default function ModifierTontine(){
     useEffect(()=>{
         getTontine(id);
     },[]);
+    
     return(
         <div>
             <div className="content-wrapper">

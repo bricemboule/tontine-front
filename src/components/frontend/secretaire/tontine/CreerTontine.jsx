@@ -11,7 +11,7 @@ export default function CreerTontine(){
     }, []);
 
     return(
-        <div>
+       
             <div className="content-wrapper">
                 <div className="content">
                     <div className="container-fluid">
@@ -67,8 +67,6 @@ export default function CreerTontine(){
 
                 </div>
             </div>
-        </div>
-
-
+    
     )
 }

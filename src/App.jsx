@@ -11,9 +11,9 @@ import DashboardSecretaire from './components/frontend/secretaire/dashboard/Dash
 import Register from './components/frontend/auth/Register';
 import DashboardCenceur from './components/frontend/censeur/dashboard/DashboardCenseur';
 import DashboardTresorier from './components/frontend/tresorier/dashboard/DashboardTresorier';
-import DashboardCommissaire from './components/frontend/commissaire/dashboard copy/DashboardCommissaire';
-import DashboardVicePresident from './components/frontend/vice_president/dashboard copy/DashboardVicePresident';
-import DashboardPresident from './components/frontend/president/dashboard copy/DashboardPresident';
+import DashboardCommissaire from './components/frontend/commissaire/dashboard/DashboardCommissaire';
+import DashboardVicePresident from './components/frontend/vice_president/dashboard/DashboardVicePresident';
+import DashboardPresident from './components/frontend/president/dashboard/DashboardPresident';
 import Modifier from './components/frontend/administrateur/utilisateur/Modifier';
 import ModifierRole from './components/frontend/administrateur/roles/ModifierRole';
 import ListerMembre from './components/frontend/secretaire/membre/ListerMembre';
@@ -22,6 +22,14 @@ import AjouterMembre from './components/frontend/secretaire/membre/AjouterMembre
 import CreerTontine from './components/frontend/secretaire/tontine/CreerTontine';
 import ListerTontine from './components/frontend/secretaire/tontine/ListerTontine';
 import ModifierTontine from './components/frontend/secretaire/tontine/ModifierTontine';
+import ValiderMembre from './components/frontend/president/membre/ValiderMembre';
+import ListerMembrePresident from './components/frontend/president/membre/ListerMembrePresident';
+import CreerSeance from './components/frontend/secretaire/seance/CreerSeance';
+import ListerSeance from './components/frontend/secretaire/seance/ListerSeance';
+import ModifierSeance from './components/frontend/secretaire/seance/ModifierSeance';
+import Susprendre from './components/frontend/secretaire/suspension/Suspendre';
+import ListerSuspension from './components/frontend/secretaire/suspension/ListerSuspension';
+import ModifierSuspension from './components/frontend/secretaire/suspension/ModifierSuspension';
 
 export default function App() {
   return  (
@@ -62,14 +70,25 @@ export default function App() {
                         <Route path='/secretaire/tontine/:id/modifier' element={<ModifierTontine/>}/>
                     </Route>
 
+                    <Route path='/secretaire/seance'>
+                        <Route path='/secretaire/seance/ajouter' element={<CreerSeance/>}/>
+                        <Route path='/secretaire/seance/lister' element={<ListerSeance/>}/>
+                        <Route path='/secretaire/seance/:id/modifier' element={<ModifierSeance/>}/>
+                    </Route>
+
+                    <Route path='/secretaire/suspension'>
+                        <Route path='/secretaire/suspension/suspendre' element={<Susprendre/>}/>
+                        <Route path='/secretaire/suspension/lister' element={<ListerSuspension/>}/>
+                        <Route path='/secretaire/suspension/:id/modifier' element={<ModifierSuspension/>}/>
+                    </Route>
+
                 </Route>
 
 
                 <Route path='/president' element={<DashboardPresident/>}>
                     <Route path='/president/membre'>
-                        <Route path='/president/membre/ajouter' element={<Ajouter/>}/>
-                        <Route path='/president/membre/lister' element={<Lister/>}/>
-                        <Route path='/president/membre/afficher' element={<ListerRole/>}/>
+                        <Route path='/president/membre/valider' element={<ValiderMembre/>}/>
+                        <Route path='/president/membre/lister' element={<ListerMembrePresident/>}/>
                     </Route>
 
                     <Route path='/president/tontine'>
