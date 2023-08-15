@@ -30,6 +30,30 @@ import ModifierSeance from './components/frontend/secretaire/seance/ModifierSean
 import Susprendre from './components/frontend/secretaire/suspension/Suspendre';
 import ListerSuspension from './components/frontend/secretaire/suspension/ListerSuspension';
 import ModifierSuspension from './components/frontend/secretaire/suspension/ModifierSuspension';
+import ListeTontine from './components/frontend/president/tontine/ListeTontine';
+import ListeSuspension from './components/frontend/president/suspensions/ListeSuspension';
+import ValiderSuspension from './components/frontend/president/suspensions/ValiderSuspension';
+import ListerTypeRetrait from './components/frontend/tresorier/TypeRetrait/ListerTypeRetrait';
+import ModifierTypeRetrait from './components/frontend/tresorier/TypeRetrait/ModiferTypeRetrait';
+import AjouterTypeRetrait from './components/frontend/tresorier/TypeRetrait/AjouterTypeRetrait';
+import AjouterTypeAmende from './components/frontend/censeur/type_amende/AjouterTypeAmende';
+import ListerTypeAmende from './components/frontend/censeur/type_amende/ListerTypeAmende';
+import ModiferTypeAmende from './components/frontend/censeur/type_amende/ModifierTypeAmende';
+import AjouterAmende from './components/frontend/censeur/amende/AjouterAmende';
+import ListerAmende from './components/frontend/censeur/amende/ListerAmende';
+import ModifierAmende from './components/frontend/censeur/amende/ModifierAmende';
+import AjouterRetrait from './components/frontend/tresorier/Retrait/AjouterRetrait';
+import ListerRetrait from './components/frontend/tresorier/Retrait/ListerRetrait';
+import ModifierRetrait from './components/frontend/tresorier/Retrait/ModifierRetrait';
+import ListerDepense from './components/frontend/tresorier/Depense/ListerDepenses';
+import ModifierDepense from './components/frontend/tresorier/Depense/ModifierDepense';
+import AjouterDepense from './components/frontend/tresorier/Depense/AjouterDepense';
+import AjouterPret from './components/frontend/tresorier/pret/AjouterPret';
+import ListerPret from './components/frontend/tresorier/pret/ListerPret';
+import ModifierPret from './components/frontend/tresorier/pret/ModifierPret';
+import AjouterCotisation from './components/frontend/tresorier/cotisation/AjouterCotisation';
+import ListerCotisation from './components/frontend/tresorier/cotisation/ListerCotisation';
+import ModifierCotisation from './components/frontend/tresorier/cotisation/ModifierCotisation';
 
 export default function App() {
   return  (
@@ -91,10 +115,14 @@ export default function App() {
                         <Route path='/president/membre/lister' element={<ListerMembrePresident/>}/>
                     </Route>
 
+                    <Route path='/president/suspension'>
+                        <Route path='/president/suspension/valider' element={<ValiderSuspension/>}/>
+                        <Route path='/president/suspension/lister' element={<ListeSuspension/>}/>
+                    </Route>
+
                     <Route path='/president/tontine'>
-                        <Route path='/president/tontine/ajouter' element={<CreerTontine/>}/>
-                        <Route path='/president/tontine/lister' element={<Lister/>}/>
-                        <Route path='/president/tontine/afficher' element={<ListerRole/>}/>
+                        <Route path='/president/tontine/lister' element={<ListeTontine/>}/>
+                       
                     </Route>
 
                 </Route>
@@ -131,27 +159,33 @@ export default function App() {
                 </Route>
 
                 <Route path='/tresorier' element={<DashboardTresorier/>}>
-                    <Route path='/tresorier/cotisation'>
-                        <Route path='/tresorier/cotisation/ajouter' element={<Ajouter/>}/>
-                        <Route path='/tresorier/cotisation/lister' element={<Lister/>}/>
-                        <Route path='/tresorier/cotisation/afficher' element={<ListerRole/>}/>
+                    <Route path='/tresorier/type_retrait'>
+                        <Route path='/tresorier/type_retrait/ajouter' element={<AjouterTypeRetrait/>}/>
+                        <Route path='/tresorier/type_retrait/lister' element={<ListerTypeRetrait/>}/>
+                        <Route path='/tresorier/type_retrait/:id/modifier' element={<ModifierTypeRetrait/>}/>
                     </Route>
 
                     <Route path='/tresorier/retrait'>
-                        <Route path='/tresorier/retrait/ajouter' element={<Ajouter/>}/>
-                        <Route path='/tresorier/retrait/lister' element={<Lister/>}/>
-                        <Route path='/tresorier/retrait/afficher' element={<ListerRole/>}/>
+                        <Route path='/tresorier/retrait/ajouter' element={<AjouterRetrait/>}/>
+                        <Route path='/tresorier/retrait/lister' element={<ListerRetrait/>}/>
+                        <Route path='/tresorier/retrait/:id/modifier' element={<ModifierRetrait/>}/>
                     </Route>
 
                     <Route path='/tresorier/depense'>
-                        <Route path='/tresorier/depense/ajouter' element={<Ajouter/>}/>
-                        <Route path='/tresorier/depense/lister' element={<Lister/>}/>
-                        <Route path='/tresorier/depense/afficher' element={<ListerRole/>}/>
+                        <Route path='/tresorier/depense/ajouter' element={<AjouterDepense/>}/>
+                        <Route path='/tresorier/depense/lister' element={<ListerDepense/>}/>
+                        <Route path='/tresorier/depense/:id/modifier' element={<ModifierDepense/>}/>
                     </Route>
                     <Route path='/tresorier/pret'>
-                        <Route path='/tresorier/pret/ajouter' element={<Ajouter/>}/>
-                        <Route path='/tresorier/pret/lister' element={<Lister/>}/>
-                        <Route path='/tresorier/pret/afficher' element={<ListerRole/>}/>
+                        <Route path='/tresorier/pret/ajouter' element={<AjouterPret/>}/>
+                        <Route path='/tresorier/pret/lister' element={<ListerPret/>}/>
+                        <Route path='/tresorier/pret/:id/modifier' element={<ModifierPret/>}/>
+                    </Route>
+
+                    <Route path='/tresorier/cotisation'>
+                        <Route path='/tresorier/cotisation/ajouter' element={<AjouterCotisation/>}/>
+                        <Route path='/tresorier/cotisation/lister' element={<ListerCotisation/>}/>
+                        <Route path='/tresorier/cotisation/:id/modifier' element={<ModifierCotisation/>}/>
                     </Route>
 
                 </Route>
@@ -163,10 +197,16 @@ export default function App() {
                         <Route path='/censeur/presence/afficher' element={<ListerRole/>}/>
                     </Route>
 
-                    <Route path='/censeur/sanction'>
-                        <Route path='/censeur/sanction/ajouter' element={<Ajouter/>}/>
-                        <Route path='/censeur/sanction/lister' element={<Lister/>}/>
-                        <Route path='/censeur/sanction/afficher' element={<ListerRole/>}/>
+                    <Route path='/censeur/type_amende'>
+                        <Route path='/censeur/type_amende/ajouter' element={<AjouterTypeAmende/>}/>
+                        <Route path='/censeur/type_amende/lister' element={<ListerTypeAmende/>}/>
+                        <Route path='/censeur/type_amende/:id/modifier' element={<ModiferTypeAmende/>}/>
+                    </Route>
+
+                    <Route path='/censeur/amende'>
+                        <Route path='/censeur/amende/ajouter' element={<AjouterAmende/>}/>
+                        <Route path='/censeur/amende/lister' element={<ListerAmende/>}/>
+                        <Route path='/censeur/amende/:id/modifier' element={<ModifierAmende/>}/>
                     </Route>
 
                     <Route path='/censeur/evenement'>
@@ -178,10 +218,7 @@ export default function App() {
                 </Route>
 
 
-                    
-               
-                
-
-            </Routes>)
+            </Routes>
+        )
 
 }

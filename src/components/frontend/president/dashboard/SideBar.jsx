@@ -1,13 +1,11 @@
-import "admin-lte/plugins/jquery/jquery"
-import "admin-lte/plugins/bootstrap/js/bootstrap.bundle"
-import "admin-lte/dist/js/adminlte"
-import "/public/css/home.css"
-
 import {Image} from 'react-bootstrap'
-import { Link, Outlet } from "react-router-dom"
-import { RoleProvider } from "../../Context/RoleContext"
+import { Link,} from "react-router-dom"
+import {useContext} from "react"
+import RoleContext from "../../Context/RoleContext"
 
-export default function sidebar(){
+export default function Sidebar(){
+
+    const {active,activeLink} = useContext(RoleContext);
 
     return(
 
@@ -56,18 +54,48 @@ export default function sidebar(){
                                 <ul className="nav nav-treeview">
                                    
                                     <li className="nav-item">
-                                        <Link to="/president/membre/lister" className="nav-link">
+                                        <Link to="/president/membre/lister" className="nav-link" onClick={()=>activeLink()}>
                                             <i className="far fa-circle nav-icon"></i>
                                             <p>Lister</p>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to="/president/membre/valider" className="nav-link">
+                                        <Link to="/president/membre/valider" className="nav-link" onClick={()=>activeLink()}>
                                             <i className="far fa-circle nav-icon"></i>
                                             <p>Valider</p>
                                         </Link>
                                     </li>
-                            </ul>
+                                </ul>
+
+
+                            
+                            </li>
+
+                            <li className="nav-item menu-open">
+                                <div className="nav-link active">
+                                    <i className="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Suspension
+                                        <i className="right fas fa-angle-left"></i>
+                                    </p>
+                                </div>
+                                <ul className="nav nav-treeview">
+                                   
+                                    <li className="nav-item">
+                                        <Link to="/president/suspension/lister" className="nav-link" onClick={()=>activeLink()}>
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Lister</p>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="/president/suspension/valider" className="nav-link" onClick={()=>activeLink()}>
+                                            <i className="far fa-circle nav-icon"></i>
+                                            <p>Valider</p>
+                                        </Link>
+                                    </li>
+                                </ul>
+
+                                
                             
                             </li>
 
@@ -81,16 +109,18 @@ export default function sidebar(){
                                     </div>
 
                                     <ul className="nav nav-treeview">
+                                        
                                         <li className="nav-item">
-                                            <Link to="tontine/ajouter" className="nav-link active">
-                                                <i className="far fa-circle nav-icon"></i>
-                                                <p>Ajouter</p>
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to="tontine/lister" className="nav-link">
+                                            <Link to="tontine/lister" className="nav-link " onClick={()=>activeLink()}>
                                                 <i className="far fa-circle nav-icon"></i>
                                                 <p>Lister</p>
+                                            </Link>
+                                        </li>
+
+                                        <li className="nav-item">
+                                            <Link to="tontine/ajouter" className="nav-link" onClick={()=>activeLink()}>
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>Tontine et Membres</p>
                                             </Link>
                                         </li>
                                     

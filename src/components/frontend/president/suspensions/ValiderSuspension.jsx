@@ -1,17 +1,20 @@
 import { Link } from "react-router-dom"
 import {useEffect,useContext} from "react"
 import RoleContext from "../../Context/RoleContext"
+import { useParams } from "react-router-dom";
 
-export default function ListerSuspension(){
 
-   const {getSuspensions, suspensions,supprimerSuspension} = useContext(RoleContext);
+
+export default function ValiderSuspension(){
+
+   const {getSuspensions, suspensions, validerSuspension,retirerSuspension} = useContext(RoleContext);
+   let {id} = useParams();
 
    useEffect(()=>{
-        getSuspensions();
+    getSuspensions();
    }, [])
-
-   console.log(suspensions);
  
+  
     return (
         
         <div className="content-wrapper">
@@ -24,24 +27,10 @@ export default function ListerSuspension(){
                 
             <div className="card">
 
-            <div className="d-flex space-between p-3 bg-gray-light">
-                <div className="d-flex flex-wrap gap-2">
-                    <button type="button" className="btn btn-success"  style={{padding:"10px"}}>
-                        <Link to='/secretaire/suspension/suspendre' className="text-decoration-none text-white">
-                            <i className="fa fa-plus pt-1"></i>
-                            <span className="pl-2"> Ajouter une suspension </span>
-                        </Link>
-                    </button> 
-                    <button type="button" className="btn btn-danger" >
-                        <i className="fa fa-trash pt-1"></i>
-                        <span className="pl-2">Supprimer une suspension</span>
-                    </button>
-                            
-                        </div> 
-                    </div>
+           
                     
                     <div className="d-flex pl-2 pt-3 mt-4 bg-gray-light">
-                        <h3>Gestion des séances</h3>
+                        <h3 className="pl-3">Gestion des suspensions</h3>
                         <div className="p-input-icon-left ml-auto mr-3">
                             <i className="fa fa-search"></i>
                             <input type="text" className="form-control pl-5 py-4 input-lg" placeholder="Rechercher..."/>
@@ -90,11 +79,11 @@ export default function ListerSuspension(){
                            }
                             
                             <td className="text-center p-3">
-                            
-                                <button className="btn btn-link btn-floating" ><Link to={`/secretaire/suspension/${suspension.id}/modifier`}> <i className="far fa-edit text-green"></i></Link> </button>
-                                <button className="btn btn-link btn-floating" onClick={()=>supprimerSuspension(suspension.id)}> <i className="far fa-trash-alt text-red"></i></button>
+                                <button className="btn btn-link btn-floating" onClick={()=>validerSuspension(suspension.id)}> <i className="far fa-edit text-green"></i></button>
+                                <button className="btn btn-link btn-floating" onClick={()=>retirerSuspension(suspension.id)}> <i className="far fa-trash-alt text-red"></i></button>
                             </td>
                         </tr>
+                        
                         ); }
                     )}
                   

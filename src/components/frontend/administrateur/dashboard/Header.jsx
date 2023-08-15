@@ -5,7 +5,7 @@ export default function Header(){
 
 
     return (
-        <div >
+        
             <nav className="main-header navbar navbar-expand navbar-white navbar-light">
 
                 <ul className="navbar-nav">
@@ -50,6 +50,5 @@ export default function Header(){
                     </li>
                 </ul>
             </nav>
-        </div>
     )
 }

@@ -17,7 +17,6 @@ export default function CreerTontine(){
                     <div className="container-fluid">
                     <br/>
                     <br/>
-                    <br/>
                         <div className="row">
                         
                             <Form onSubmit={SaveTontine} className='pt-2'>

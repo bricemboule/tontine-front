@@ -8,8 +8,7 @@ export default function Header(){
 
 
     return (
-        <div >
-            <nav className="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav className="main-header navbar navbar-expand navbar-white navbar-light">
 
                 <ul className="navbar-nav">
                     <li className="nav-item">
@@ -20,9 +19,10 @@ export default function Header(){
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item dropdown">
                     <a className="nav-link" data-toggle="dropdown" href="#">
-                    <i className="far fa-bell"></i>
-                    <span className="badge badge-warning navbar-badge">15</span>
-                    </a>
+                        <i className="fas fa-bell"></i>
+                        <span className="badge badge-warning" style={{borderRadius:"100%", fontSize: "10px", position: "relative", top: "-8px", left: "-7px", padding: "3px"}}>15</span>
+                        {/* <span className="badge badge-warning navbar-badge">15</span> */}
+                        </a>
                     <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <span className="dropdown-header">15 Notifications</span>
                     <div className="dropdown-divider"></div>
@@ -46,12 +46,11 @@ export default function Header(){
                     </li>
                     
                     <li className="nav-item">
-                    <a className="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                    <i className="fas fa-user"></i>
-                    </a>
+                        <a className="nav-link" data-widget="control-sidebar" data-slide="" href="#" role="button">
+                            <i className="fas fa-user"></i>
+                        </a>
                     </li>
                 </ul>
             </nav>
-        </div>
     )
 }

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import {useEffect,useContext} from "react"
 import RoleContext from "../../Context/RoleContext"
 
-export default function ListerSuspension(){
+export default function ListeSuspension(){
 
    const {getSuspensions, suspensions,supprimerSuspension} = useContext(RoleContext);
 
@@ -24,22 +24,7 @@ export default function ListerSuspension(){
                 
             <div className="card">
 
-            <div className="d-flex space-between p-3 bg-gray-light">
-                <div className="d-flex flex-wrap gap-2">
-                    <button type="button" className="btn btn-success"  style={{padding:"10px"}}>
-                        <Link to='/secretaire/suspension/suspendre' className="text-decoration-none text-white">
-                            <i className="fa fa-plus pt-1"></i>
-                            <span className="pl-2"> Ajouter une suspension </span>
-                        </Link>
-                    </button> 
-                    <button type="button" className="btn btn-danger" >
-                        <i className="fa fa-trash pt-1"></i>
-                        <span className="pl-2">Supprimer une suspension</span>
-                    </button>
-                            
-                        </div> 
-                    </div>
-                    
+            
                     <div className="d-flex pl-2 pt-3 mt-4 bg-gray-light">
                         <h3>Gestion des séances</h3>
                         <div className="p-input-icon-left ml-auto mr-3">
@@ -58,12 +43,12 @@ export default function ListerSuspension(){
                             </div>
                         </th>
                         <th scope="col" className="text-center width-20 p-3" style={{width:"100px"}}></th>
-                        <th scope="col" className="text-center width-20 p-3" style={{width:"450px"}}>Membre</th>
+                        <th scope="col" className="text-center width-20 p-3" style={{width:"400px"}}>Membre</th>
                         <th scope="col" className="text-center p-3" style={{width:"400px"}}>Motif</th>
-                        <th scope="col" className="text-center p-3" style={{width:"10px"}}>Période</th>
-                        <th scope="col" className="text-center p-3" style={{width:"500px"}}>Séance</th>
-                        <th scope="col" className="text-center p-3" style={{width:"500px"}}>Statut</th>
-                        <th scope="col" className="text-center p-3" style={{width:"600px"}}>Actions</th>
+                        <th scope="col" className="text-center p-3" style={{width:"400px"}}>Période</th>
+                        <th scope="col" className="text-center p-3" style={{width:"400px"}}>Séance</th>
+                        <th scope="col" className="text-center p-3" style={{width:"400px"}}>Statut</th>
+                        
                         </tr>
                 </thead>
                 <tbody>
@@ -89,11 +74,6 @@ export default function ListerSuspension(){
                                 )
                            }
                             
-                            <td className="text-center p-3">
-                            
-                                <button className="btn btn-link btn-floating" ><Link to={`/secretaire/suspension/${suspension.id}/modifier`}> <i className="far fa-edit text-green"></i></Link> </button>
-                                <button className="btn btn-link btn-floating" onClick={()=>supprimerSuspension(suspension.id)}> <i className="far fa-trash-alt text-red"></i></button>
-                            </td>
                         </tr>
                         ); }
                     )}

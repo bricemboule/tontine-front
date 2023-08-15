@@ -1,7 +1,3 @@
-import "admin-lte/plugins/jquery/jquery"
-import "admin-lte/plugins/bootstrap/js/bootstrap.bundle"
-import "admin-lte/dist/js/adminlte"
-import "/public/css/home.css"
 
 export default function Footer(){
 

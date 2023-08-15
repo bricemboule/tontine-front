@@ -46,74 +46,51 @@ export default function sidebar(){
                                     </Link>
                                 </li>
                             <li className="nav-item menu-open">
-                                <Link to="" className="nav-link active">
+                                <div className="nav-link active">
                                     <i className="nav-icon fas fa-users"></i>
                                     <p>
-                                        Présence
                                         <i className="right fas fa-angle-left"></i>
+                                        Type Amendes
                                     </p>
-                                </Link>
+                                </div>
                                 <ul className="nav nav-treeview">
                                     <li className="nav-item">
-                                        <Link to="presence/ajouter" className="nav-link active">
+                                        <Link to="type_amende/ajouter" className="nav-link active">
                                             <i className="far fa-circle nav-icon"></i>
                                             <p>Ajouter</p>
                                         </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to="/presence/lister" className="nav-link">
+                                        <Link to="/censeur/type_amende/lister" className="nav-link">
                                             <i className="far fa-circle nav-icon"></i>
                                             <p>Lister</p>
                                         </Link>
                                     </li>
-                                    <li className="nav-item">
-                                        <Link to="/presence/modifier" className="nav-link">
-                                            <i className="far fa-circle nav-icon"></i>
-                                            <p>Modifier</p>
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link to="/presence/supprimer" className="nav-link">
-                                            <i className="far fa-circle nav-icon"></i>
-                                            <p>Supprimer</p>
-                                        </Link>
-                                    </li>
+                                  
                             </ul>
                             
                             </li>
 
                             <li className="nav-item ">
-                                    <Link to="" className="nav-link active">
+                                    <div className="nav-link active">
                                         <i className="nav-icon fas fa-user-plus"></i>
                                         <p>
-                                            Sanction
+                                            Amendes
                                             <i className="right fas fa-angle-left"></i>
                                         </p>
-                                    </Link>
+                                    </div>
 
                                     <ul className="nav nav-treeview">
                                         <li className="nav-item">
-                                            <Link to="sanction/ajouter" className="nav-link active">
+                                            <Link to="amende/ajouter" className="nav-link active">
                                                 <i className="far fa-circle nav-icon"></i>
                                                 <p>Ajouter</p>
                                             </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="sanction/lister" className="nav-link">
+                                            <Link to="amende/lister" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
                                                 <p>Lister</p>
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to="sanction/modifier" className="nav-link">
-                                                <i className="far fa-circle nav-icon"></i>
-                                                <p>Modifier</p>
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to="sanction/supprimer" className="nav-link">
-                                                <i className="far fa-circle nav-icon"></i>
-                                                <p>Supprimer</p>
                                             </Link>
                                         </li>
                                     </ul>

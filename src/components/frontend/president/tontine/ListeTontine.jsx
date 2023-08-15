@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import {useEffect,useContext} from "react"
 import RoleContext from "../../Context/RoleContext"
 
-export default function ListerTontine(){
+export default function ListeTontine(){
 
    const {getTontines, tontines,SupprimerTontine} = useContext(RoleContext);
 
@@ -24,21 +24,7 @@ export default function ListerTontine(){
                 
             <div className="card">
 
-            <div className="d-flex space-between p-3 bg-gray-light">
-                <div className="d-flex flex-wrap gap-2">
-                    <button type="button" className="btn btn-success"  style={{padding:"10px"}}>
-                        <Link to='/secretaire/tontine/ajouter' className="text-decoration-none text-white">
-                            <i className="fa fa-plus pt-1"></i>
-                            <span className="pl-2"> Ajouter une tontine </span>
-                        </Link>
-                    </button> 
-                    <button type="button" className="btn btn-danger" >
-                        <i className="fa fa-trash pt-1"></i>
-                        <span className="pl-2">Supprimer une tontine</span>
-                    </button>
-                            
-                        </div> 
-                    </div>
+           
                     
                     <div className="d-flex pl-2 pt-3 mt-4 bg-gray-light">
                         <h3>Gestion des tontines</h3>
@@ -58,12 +44,12 @@ export default function ListerTontine(){
                             </div>
                         </th>
                         <th scope="col" className="text-center width-20 p-3" style={{width:"100px"}}></th>
-                        <th scope="col" className="text-center width-20 p-3" style={{width:"900px"}}>Intitulé</th>
-                        <th scope="col" className="text-center p-3" style={{width:"600px"}}>Nbre Participant</th>
-                        <th scope="col" className="text-center p-3" style={{width:"500px"}}>Date début</th>
-                        <th scope="col" className="text-center p-3" style={{width:"500px"}}>Date Fin</th>
+                        <th scope="col" className="text-center width-20 p-3" style={{width:"500px"}}>Intitulé</th>
+                        <th scope="col" className="text-center p-3" style={{width:"900px"}}>Nombre de Participant</th>
+                        <th scope="col" className="text-center p-3" style={{width:"400px"}}>Date début</th>
+                        <th scope="col" className="text-center p-3" style={{width:"400px"}}>Date Fin</th>
                         <th scope="col" className="text-center p-3" style={{width:"600px"}}>Observations</th>
-                        <th scope="col" className="text-center p-3" style={{width:"600px"}}>Actions</th>
+                        
                         </tr>
                 </thead>
                 <tbody>
@@ -81,12 +67,6 @@ export default function ListerTontine(){
                             <td className="text-center p-3">{tontine.dateDebut}</td>             
                             <td className="text-center p-3">{tontine.dateFin}</td>
                             <td className="text-center p-3">{tontine.observation}</td>
-                         
-                            <td className="text-center p-3">
-                            
-                                <button className="btn btn-link btn-floating" ><Link to={`/secretaire/tontine/${tontine.id}/modifier`}> <i className="far fa-edit text-green"></i></Link> </button>
-                                <button className="btn btn-link btn-floating" onClick={()=>SupprimerTontine(tontine.id)}> <i className="far fa-trash-alt text-red"></i></button>
-                            </td>
                         </tr>
                         ); }
                     )}
